@@ -1,0 +1,12 @@
+app\page.tsx
+app\globals.css
+app\components\MaterialsPlanningPanel.tsx
+app\components\PreliminarySpecificationPanel.tsx (targeted update)
+app\lib\manufacturingRules.ts
+app\lib\cmlStandardRules.ts
+app\lib\sidewallRules.ts
+app\lib\materialPlanning.ts
+app\lib\procurementExportRules.ts
+tests\element-resource-export.test.mjs
+docs\CHANGE_05T_ELEMENT_RESOURCE_EXPORT.md
+docs\CHANGE_05U_5P_CML_STANDARD_RULES.md

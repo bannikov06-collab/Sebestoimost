@@ -1,0 +1,31 @@
+{
+  "date": "2026-08-24",
+  "sourceVersion": 32,
+  "sourceCommit": "8138098632410669c0c0e5b958c07d4dbd7ba406",
+  "database": {
+    "calculations": 5,
+    "assignment_history": 0,
+    "workspace_records": 40
+  },
+  "r2": {
+    "files": 11,
+    "totalBytes": 2615729,
+    "allSizesMatch": true,
+    "sha256Recorded": true
+  },
+  "application": {
+    "productionBuild": "passed",
+    "tests": 43,
+    "passed": 43,
+    "failed": 0
+  },
+  "safety": {
+    "oldProjectIdRemoved": true,
+    "secretsIncluded": false,
+    "agentsMode": "read-only",
+    "ip55": "explicit-only",
+    "ip68": "blocked",
+    "unknownIp": "blocked",
+    "conflictingIp": "blocked"
+  }
+}

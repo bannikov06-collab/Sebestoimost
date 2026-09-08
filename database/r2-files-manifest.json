@@ -1,0 +1,256 @@
+[
+  {
+    "storageKey": "projects/%D0%96%D0%9A%20%D0%A1%D0%B5%D0%B2%D0%B5%D1%80%D0%BD%D1%8B%D0%B9%20%D0%BF%D0%BE%D1%80%D1%82/Предварительная спецификация №ШП-033107/eaf2e406-5afa-46e8-93e1-2cb4659b4a2f-specif_33107_нов.xls",
+    "fileName": "specif_33107_нов.xls",
+    "contentType": "application/octet-stream",
+    "expectedSize": 56832,
+    "recordIds": [
+      30,
+      31
+    ],
+    "categories": [
+      "preliminary_specification",
+      "preliminary_specification_file"
+    ],
+    "projectKeys": [
+      "ЖК Северный порт"
+    ],
+    "entityKeys": [
+      "Предварительная спецификация №ШП-033107",
+      "ШП-033107"
+    ],
+    "archiveFile": "uploads/001_specif_33107_нов.xls",
+    "actualSize": 56832,
+    "sha256": "e60d601f3f8810a7476b3f2a1e0b5ddd36ccc2932905441e5a0eb70aeea23bd6",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/%D0%A1%D0%B1%D0%B5%D1%80%D0%BA%D1%83%D1%82/Заказ на производство №02600000351/6c24e351-9f21-4dab-bcaa-5e7b9a4885ff-Заказ_на_производство_02600000351_от_17.07.2026_.xlsx",
+    "fileName": "Заказ на производство 02600000351 от 17.07.2026 .xlsx",
+    "contentType": "application/octet-stream",
+    "expectedSize": 13794,
+    "recordIds": [
+      28,
+      29
+    ],
+    "categories": [
+      "production_order",
+      "production_order_file"
+    ],
+    "projectKeys": [
+      "Сберкут"
+    ],
+    "entityKeys": [
+      "02600000351",
+      "Заказ на производство №02600000351"
+    ],
+    "archiveFile": "uploads/002_Заказ_на_производство_02600000351_от_17.07.2026_.xlsx",
+    "actualSize": 13794,
+    "sha256": "902bbb80384625299697c8096c32adfca535463c19dc07ea92a71004d063c278",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/__ILLIQUID__/Реестр неликвидов/eec38083-afdc-4428-99c1-155cbdb71a38-Неликвид_19.08.2026.xlsx",
+    "fileName": "Неликвид 19.08.2026.xlsx",
+    "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "expectedSize": 18512,
+    "recordIds": [
+      26
+    ],
+    "categories": [
+      "illiquid_file"
+    ],
+    "projectKeys": [
+      "__ILLIQUID__"
+    ],
+    "entityKeys": [
+      "Реестр неликвидов"
+    ],
+    "archiveFile": "uploads/003_Неликвид_19.08.2026.xlsx",
+    "actualSize": 18512,
+    "sha256": "62e0b6f39c56bff1f1adfe34895908dd6d08c9db641347d9407ae82789cd59b2",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/__STOCK__/Остатки склада/3716b67d-50ab-4a2a-a441-7c9354155bc5-Остатки_ТМЦ_39_.xlsm",
+    "fileName": "Остатки ТМЦ (39).xlsm",
+    "contentType": "application/vnd.ms-excel.sheet.macroEnabled.12",
+    "expectedSize": 371117,
+    "recordIds": [
+      24
+    ],
+    "categories": [
+      "stock_file"
+    ],
+    "projectKeys": [
+      "__STOCK__"
+    ],
+    "entityKeys": [
+      "Остатки склада"
+    ],
+    "archiveFile": "uploads/004_Остатки_ТМЦ_(39).xlsm",
+    "actualSize": 371117,
+    "sha256": "bd9711afcedb23afc10013d567fc8578a068610980e31ec053da57d9769cc6a5",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/__STOCK__/Остатки склада/c7a9834d-76fd-48d6-940b-79c5ccaa3d88-Остатки_ТМЦ_37_.xlsm",
+    "fileName": "Остатки ТМЦ (37).xlsm",
+    "contentType": "application/vnd.ms-excel.sheet.macroenabled.12",
+    "expectedSize": 371339,
+    "recordIds": [
+      22
+    ],
+    "categories": [
+      "stock_file"
+    ],
+    "projectKeys": [
+      "__STOCK__"
+    ],
+    "entityKeys": [
+      "Остатки склада"
+    ],
+    "archiveFile": "uploads/005_Остатки_ТМЦ_(37).xlsm",
+    "actualSize": 371339,
+    "sha256": "b42b076bb18669e47b17fd2c58755365d049b7eb6bc1fbe0d5fcd100e28429e1",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/__STOCK__/Остатки склада/f035689b-9bd7-4845-aa53-4003bac6b782-Остатки_ТМЦ_37_.xlsm",
+    "fileName": "Остатки ТМЦ (37).xlsm",
+    "contentType": "application/vnd.ms-excel.sheet.macroenabled.12",
+    "expectedSize": 371339,
+    "recordIds": [
+      20
+    ],
+    "categories": [
+      "stock_file"
+    ],
+    "projectKeys": [
+      "__STOCK__"
+    ],
+    "entityKeys": [
+      "Остатки склада"
+    ],
+    "archiveFile": "uploads/006_Остатки_ТМЦ_(37).xlsm",
+    "actualSize": 371339,
+    "sha256": "b42b076bb18669e47b17fd2c58755365d049b7eb6bc1fbe0d5fcd100e28429e1",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/%D0%91%D0%B5%D0%B7%20%D0%BF%D1%80%D0%BE%D0%B5%D0%BA%D1%82%D0%B0/Заказ на производство №02600000387/46907f57-915a-4eea-939f-adef1234e447-Заказ_на_производство_02600000387_от_06.08.2026_.xlsx",
+    "fileName": "Заказ на производство 02600000387 от 06.08.2026 .xlsx",
+    "contentType": "application/octet-stream",
+    "expectedSize": 12245,
+    "recordIds": [
+      18,
+      19
+    ],
+    "categories": [
+      "production_order",
+      "production_order_file"
+    ],
+    "projectKeys": [
+      "Без проекта"
+    ],
+    "entityKeys": [
+      "02600000387",
+      "Заказ на производство №02600000387"
+    ],
+    "archiveFile": "uploads/007_Заказ_на_производство_02600000387_от_06.08.2026_.xlsx",
+    "actualSize": 12245,
+    "sha256": "8aa92fa06434323bd0de3659647a2b0017e86c1ea513e8e9393bd8a4e8ca2df0",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/__STOCK__/Остатки склада/3e2cccdd-02bd-44d8-83e0-1f08cd35aebd-Остатки_ТМЦ_37_.xlsm",
+    "fileName": "Остатки ТМЦ (37).xlsm",
+    "contentType": "application/vnd.ms-excel.sheet.macroenabled.12",
+    "expectedSize": 371339,
+    "recordIds": [
+      14
+    ],
+    "categories": [
+      "stock_file"
+    ],
+    "projectKeys": [
+      "__STOCK__"
+    ],
+    "entityKeys": [
+      "Остатки склада"
+    ],
+    "archiveFile": "uploads/008_Остатки_ТМЦ_(37).xlsm",
+    "actualSize": 371339,
+    "sha256": "b42b076bb18669e47b17fd2c58755365d049b7eb6bc1fbe0d5fcd100e28429e1",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/%D0%A6%D0%9E%D0%94%20%D0%A1%D0%A2%D0%98/Заказ на производство №02600000425/51e8af62-3bb9-45ae-a979-c59bd13e13fa-Заказ_на_производство_02600000425_от_17.08.2026_.xlsx",
+    "fileName": "Заказ на производство 02600000425 от 17.08.2026 .xlsx",
+    "contentType": "application/octet-stream",
+    "expectedSize": 10842,
+    "recordIds": [
+      12,
+      13
+    ],
+    "categories": [
+      "production_order",
+      "production_order_file"
+    ],
+    "projectKeys": [
+      "ЦОД СТИ"
+    ],
+    "entityKeys": [
+      "02600000425",
+      "Заказ на производство №02600000425"
+    ],
+    "archiveFile": "uploads/009_Заказ_на_производство_02600000425_от_17.08.2026_.xlsx",
+    "actualSize": 10842,
+    "sha256": "dd078e8696ff81d2085f71c307d0a9c6a1fbd354e354576457c57f90ec79fdcf",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/%D0%A6%D0%9E%D0%94%20%D0%A1%D0%A2%D0%98/Договорная спецификация/36b0c26a-bd91-45a6-8f2c-5918e33828c4-ЧЕРТЕЖИ_к_ДОГОВОР_ПОСТАВКИ_МК2507_18_от_08.07.2025_.pdf",
+    "fileName": "ЧЕРТЕЖИ к ДОГОВОР ПОСТАВКИ № МК2507_18 от 08.07.2025 .pdf",
+    "contentType": "application/pdf",
+    "expectedSize": 1005656,
+    "recordIds": [
+      7
+    ],
+    "categories": [
+      "document"
+    ],
+    "projectKeys": [
+      "ЦОД СТИ"
+    ],
+    "entityKeys": [
+      "Договорная спецификация"
+    ],
+    "archiveFile": "uploads/010_ЧЕРТЕЖИ_к_ДОГОВОР_ПОСТАВКИ_No_МК2507_18_от_08.07.2025_.pdf",
+    "actualSize": 1005656,
+    "sha256": "de8165efcdada6e80784df8dc14dbaa15f7c7cdcedfcef78ec93329b8aa3d16f",
+    "sizeMatches": true
+  },
+  {
+    "storageKey": "projects/%D0%A6%D0%9E%D0%94%20%D0%A1%D0%A2%D0%98/Договорная спецификация/edcb1193-c4f4-4dc6-9508-27fe39f25f3e-Спецификация.xlsx",
+    "fileName": "Спецификация.xlsx",
+    "contentType": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "expectedSize": 12714,
+    "recordIds": [
+      6
+    ],
+    "categories": [
+      "document"
+    ],
+    "projectKeys": [
+      "ЦОД СТИ"
+    ],
+    "entityKeys": [
+      "Договорная спецификация"
+    ],
+    "archiveFile": "uploads/011_Спецификация.xlsx",
+    "actualSize": 12714,
+    "sha256": "f627c5d46f4e02a70ebdbd5517a210eeb49297642344ddbb93d88fe0fa87176e",
+    "sizeMatches": true
+  }
+]

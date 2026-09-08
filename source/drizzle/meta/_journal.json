@@ -1,0 +1,27 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1786087245402,
+      "tag": "0000_cooing_wong",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1786713407629,
+      "tag": "0001_chilly_virginia_dare",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1786978331049,
+      "tag": "0002_red_jetstream",
+      "breakpoints": true
+    }
+  ]
+}

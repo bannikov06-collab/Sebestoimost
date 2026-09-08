@@ -1,0 +1,39 @@
+{
+  "exportedAt": "2026-08-24T08:33:03.985Z",
+  "source": {
+    "siteTitle": "Себестоимость шинопровода",
+    "siteSlug": "klm-busway-cost",
+    "savedVersion": 32,
+    "commitSha": "8138098632410669c0c0e5b958c07d4dbd7ba406"
+  },
+  "d1": {
+    "binding": "DB",
+    "tables": {
+      "calculations": 5,
+      "assignment_history": 0,
+      "workspace_records": 40
+    },
+    "workspaceCategories": {
+      "commercial": 3,
+      "cost_decision": 10,
+      "document": 2,
+      "illiquid_file": 1,
+      "illiquid_snapshot": 1,
+      "payment": 2,
+      "preliminary_specification": 2,
+      "preliminary_specification_file": 1,
+      "production_order": 5,
+      "production_order_file": 3,
+      "project": 2,
+      "stock_file": 4,
+      "stock_snapshot": 4
+    }
+  },
+  "r2": {
+    "binding": "BUCKET",
+    "uniqueFiles": 11,
+    "totalBytes": 2615729,
+    "allSizesMatch": true,
+    "allChecksumsPresent": true
+  }
+}

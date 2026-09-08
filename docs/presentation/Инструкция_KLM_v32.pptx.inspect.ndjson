@@ -1,0 +1,275 @@
+{"kind":"deck","id":"pr/egvqxf","name":"Deck"}
+{"kind":"layout","layoutId":"f539ea90-79b4-4e26-afd2-207d47420145","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"d7b41246-9e06-46ee-beec-9bbdc39b4c1b","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/fjwtfb","slide":1,"title":"KLM · ЕДИНАЯ СИСТЕМА УПРАВЛЕНИЯ","textShapes":5}
+{"kind":"textbox","id":"sh/z61gfqd8","slide":1,"text":"KLM · ЕДИНАЯ СИСТЕМА УПРАВЛЕНИЯ","textPreview":"KLM · ЕДИНАЯ СИСТЕМА УПРАВЛЕНИЯ","textChars":31,"textLines":1,"bbox":[44,42,650,30]}
+{"kind":"textbox","id":"sh/0rahovet","slide":1,"text":"Работа с KLM v32","textPreview":"Работа с KLM v32","textChars":16,"textLines":1,"bbox":[44,182,1040,174]}
+{"kind":"textbox","id":"sh/1sjih0ve","slide":1,"text":"От расчёта элементов до закупки, резервов и производственного плана","textPreview":"От расчёта элементов до закупки, резервов и производственного плана","textChars":67,"textLines":1,"bbox":[44,405,760,108]}
+{"kind":"textbox","id":"sh/mtszq5wj","slide":1,"text":"Обучающая презентация · версия 1.0 · 07.09.2026","textPreview":"Обучающая презентация · версия 1.0 · 07.09.2026","textChars":47,"textLines":1,"bbox":[44,600,760,30]}
+{"kind":"shape","id":"sh/nu10jad4","slide":1,"bbox":[1135,42,70,70]}
+{"kind":"textbox","id":"sh/ovahsvep","slide":1,"text":"ПБ","textPreview":"ПБ","textChars":2,"textLines":1,"bbox":[1143,57,54,40]}
+{"kind":"notes","id":"nt/fjwtfb","slide":1,"text":"Перед вами обучающая инструкция по работе с системой KLM версии 32. Система объединяет расчёт себестоимости шинопровода, формирование ресурсной потребности, работу со складом, резервирование материалов и производственное планирование. В этой презентации мы пройдём основной рабочий путь сотрудника: от выбора проекта и загрузки спецификации до выгрузки Excel для снабжения. Важно соблюдать последовательность действий, потому что выбранный номинал, состав элементов и складской режим должны одинаково применяться во всех последующих разделах.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}
+{"kind":"slide","id":"sl/wiw3d8","slide":2,"title":"МАРШРУТ","textShapes":16}
+{"kind":"textbox","id":"sh/k32xcnex","slide":2,"text":"МАРШРУТ","textPreview":"МАРШРУТ","textChars":7,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/j2twjixc","slide":2,"text":"Весь рабочий путь — в шести шагах","textPreview":"Весь рабочий путь — в шести шагах","textChars":33,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/y10vadwr","slide":2,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/x0reh8f6","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/wfid83el","slide":2,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[54,192,70,36]}
+{"kind":"textbox","id":"sh/be9wfix0","slide":2,"text":"Выбрать проект и очередь","textPreview":"Выбрать проект и очередь","textChars":24,"textLines":1,"bbox":[150,186,1040,48]}
+{"kind":"shape","id":"sh/ad0v6dwv","slide":2,"bbox":[44,242,1188,1]}
+{"kind":"textbox","id":"sh/hwvetcvq","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[54,265,70,36]}
+{"kind":"textbox","id":"sh/gbmxk7e5","slide":2,"text":"Загрузить спецификации","textPreview":"Загрузить спецификации","textChars":22,"textLines":1,"bbox":[150,259,1040,48]}
+{"kind":"shape","id":"sh/a5kr6t03","slide":2,"bbox":[44,315,1188,1]}
+{"kind":"textbox","id":"sh/b6t8fyho","slide":2,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[54,338,70,36]}
+{"kind":"textbox","id":"sh/c7m983i9","slide":2,"text":"Проверить расчёт и номинал","textPreview":"Проверить расчёт и номинал","textChars":26,"textLines":1,"bbox":[150,332,1040,48]}
+{"kind":"shape","id":"sh/x8vqh8zu","slide":2,"bbox":[44,388,1188,1]}
+{"kind":"textbox","id":"sh/21kr2t07","slide":2,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[54,411,70,36]}
+{"kind":"textbox","id":"sh/n2t8behc","slide":2,"text":"Сформировать потребность","textPreview":"Сформировать потребность","textChars":24,"textLines":1,"bbox":[150,405,1040,48]}
+{"kind":"shape","id":"sh/o3294jix","slide":2,"bbox":[44,461,1188,1]}
+{"kind":"textbox","id":"sh/p4bqdozi","slide":2,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[54,484,70,36]}
+{"kind":"textbox","id":"sh/mx4red0b","slide":2,"text":"Выгрузить Excel для снабжения","textPreview":"Выгрузить Excel для снабжения","textChars":29,"textLines":1,"bbox":[150,478,1040,48]}
+{"kind":"shape","id":"sh/7yx8nihw","slide":2,"bbox":[44,534,1188,1]}
+{"kind":"textbox","id":"sh/jipozax8","slide":2,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[54,557,70,36]}
+{"kind":"textbox","id":"sh/ihgn65gn","slide":2,"text":"Назначить производство и контролировать сроки","textPreview":"Назначить производство и контролировать сроки","textChars":45,"textLines":1,"bbox":[150,551,1040,48]}
+{"kind":"shape","id":"sh/5k761kfe","slide":2,"bbox":[44,607,1188,1]}
+{"kind":"notes","id":"nt/wiw3d8","slide":2,"text":"Работа строится по шести этапам. Сначала выбираем или создаём проект. Затем загружаем заказ на производство или предварительную спецификацию. После этого проверяем распознанные элементы и выполняем расчёт. Далее формируем потребность с учётом складских остатков и резервов. После проверки скачиваем Excel для снабжения. В завершение назначаем производственный приоритет и контролируем плановые даты. Если на любом этапе есть неподтверждённые данные, сначала устраняем замечания, а уже затем используем результат для закупки или производства.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}
+{"kind":"slide","id":"sl/hj1or0","slide":3,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/2hg3mtw7","slide":3,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/pk72h8vy","slide":3,"text":"Начинайте с проекта и очереди","textPreview":"Начинайте с проекта и очереди","textChars":29,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/ojylo3ed","slide":3,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/fe5kbexw","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/edw3itwb","slide":3,"text":"Очередь связывает расчёт с фактическим прохождением проекта.","textPreview":"Очередь связывает расчёт с фактическим прохождением проекта.","textChars":60,"textLines":1,"bbox":[44,166,552,74]}
+{"kind":"shape","id":"sh/1gn2dofm","slide":3,"bbox":[44,263,16,16]}
+{"kind":"textbox","id":"sh/0felkje1","slide":3,"text":"Проверьте название и источник заказа","textPreview":"Проверьте название и источник заказа","textChars":36,"textLines":1,"bbox":[78,258,514,68]}
+{"kind":"shape","id":"sh/za9knid0","slide":3,"bbox":[44,335,16,16]}
+{"kind":"textbox","id":"sh/y903udwf","slide":3,"text":"Назначьте приоритет: 1 — самый высокий","textPreview":"Назначьте приоритет: 1 — самый высокий","textChars":38,"textLines":1,"bbox":[78,330,514,68]}
+{"kind":"shape","id":"sh/cj6l87id","slide":3,"bbox":[44,407,16,16]}
+{"kind":"textbox","id":"sh/dkf2hczy","slide":3,"text":"Новый заказ без приоритета остаётся выделенным","textPreview":"Новый заказ без приоритета остаётся выделенным","textChars":46,"textLines":1,"bbox":[78,402,514,68]}
+{"kind":"shape","id":"sh/qho36x07","slide":3,"bbox":[44,479,16,16]}
+{"kind":"textbox","id":"sh/rixkf2hs","slide":3,"text":"Плановые даты зависят от очереди","textPreview":"Плановые даты зависят от очереди","textChars":32,"textLines":1,"bbox":[78,474,514,68]}
+{"kind":"shape","id":"sh/4fml4nih","slide":3,"bbox":[674,158,562,486]}
+{"kind":"image","id":"im/6t83q9kj","slide":3,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[680,164,550,474]}
+{"kind":"notes","id":"nt/hj1or0","slide":3,"text":"Начинать работу удобнее с раздела объектов. Здесь видна очередь проектов, текущий приоритет, ответственный отдел, сотрудник и контрольная точка. Светлая и тёмная темы переключаются в правой верхней части страницы. Выбирайте тему, в которой хорошо различимы подписи, поля и кнопки. Новый заказ сначала находится без назначенного приоритета и ожидает постановки в очередь. До назначения приоритета плановые даты нельзя считать окончательными.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Начинайте с проекта и очереди», 07.09.2026"}
+{"kind":"slide","id":"sl/f9ujg4","slide":4,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/x8nitgnu","slide":4,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/a5wziloj","slide":4,"text":"Рассчитывайте одну или несколько спецификаций","textPreview":"Рассчитывайте одну или несколько спецификаций","textChars":45,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/v65gr654","slide":4,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/83ehgb6d","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/94nypgny","slide":4,"text":"Совместный расчёт объединяет повторяющиеся элементы и сохраняет состав заказов.","textPreview":"Совместный расчёт объединяет повторяющиеся элементы и сохраняет состав заказов.","textChars":79,"textLines":1,"bbox":[674,166,552,74]}
+{"kind":"shape","id":"sh/mhcze1o7","slide":4,"bbox":[674,263,16,16]}
+{"kind":"textbox","id":"sh/n2lgn65s","slide":4,"text":"Отметьте нужные документы галочками","textPreview":"Отметьте нужные документы галочками","textChars":35,"textLines":1,"bbox":[708,258,514,68]}
+{"kind":"shape","id":"sh/szyhsvmx","slide":4,"bbox":[674,335,16,16]}
+{"kind":"textbox","id":"sh/t07i10n2","slide":4,"text":"Нажмите «Рассчитать выбранные»","textPreview":"Нажмите «Рассчитать выбранные»","textChars":30,"textLines":1,"bbox":[708,330,514,68]}
+{"kind":"shape","id":"sh/9wjmxkza","slide":4,"bbox":[674,407,16,16]}
+{"kind":"textbox","id":"sh/ovalozip","slide":4,"text":"Проверьте список включённых заказов","textPreview":"Проверьте список включённых заказов","textChars":35,"textLines":1,"bbox":[708,402,514,68]}
+{"kind":"shape","id":"sh/na14vuhk","slide":4,"bbox":[674,479,16,16]}
+{"kind":"textbox","id":"sh/29s3mp0z","slide":4,"text":"Не меняйте порядок строк калькулятора вручную","textPreview":"Не меняйте порядок строк калькулятора вручную","textChars":45,"textLines":1,"bbox":[708,474,514,68]}
+{"kind":"shape","id":"sh/18jmtkze","slide":4,"bbox":[44,158,562,486]}
+{"kind":"image","id":"im/3qhw3ex4","slide":4,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[50,164,550,474]}
+{"kind":"notes","id":"nt/f9ujg4","slide":4,"text":"В калькулятор можно передать один заказ, несколько заказов или предварительные спецификации. Отметьте нужные документы галочками и нажмите кнопку расчёта выбранных спецификаций. При совместном расчёте одинаковые элементы объединяются по артикулу, проводности и размерам, а количество суммируется. Перед продолжением проверьте название проекта и перечень включённых заказов. Это особенно важно для Excel: в файле снабжения должны быть перечислены все заказы, вошедшие в общий расчёт.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Рассчитывайте одну или несколько спецификаций», 07.09.2026"}
+{"kind":"slide","id":"sl/1eza1f","slide":5,"title":"НОМИНАЛ","textShapes":17}
+{"kind":"textbox","id":"sh/i50nihw7","slide":5,"text":"НОМИНАЛ","textPreview":"НОМИНАЛ","textChars":7,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/5srmdwvy","slide":5,"text":"Выбранный номинал меняет весь ресурсный состав","textPreview":"Выбранный номинал меняет весь ресурсный состав","textChars":46,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/kri5kred","slide":5,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/7u94fmd4","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/6t0nmhcj","slide":5,"text":"Пример для заказа 2000 А","textPreview":"Пример для заказа 2000 А","textChars":24,"textLines":1,"bbox":[44,168,500,38]}
+{"kind":"textbox","id":"sh/twb6hwvu","slide":5,"text":"Исходный","textPreview":"Исходный","textChars":8,"textLines":1,"bbox":[44,260,330,34]}
+{"kind":"textbox","id":"sh/svi5orup","slide":5,"text":"2000 А","textPreview":"2000 А","textChars":6,"textLines":1,"bbox":[44,310,330,82]}
+{"kind":"textbox","id":"sh/fytoj6d0","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[382,318,48,56]}
+{"kind":"textbox","id":"sh/uxknq1cf","slide":5,"text":"На один ниже","textPreview":"На один ниже","textChars":12,"textLines":1,"bbox":[446,260,330,34]}
+{"kind":"textbox","id":"sh/cfu9czex","slide":5,"text":"1600 А","textPreview":"1600 А","textChars":6,"textLines":1,"bbox":[446,310,330,82]}
+{"kind":"textbox","id":"sh/xg3al4fi","slide":5,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[784,318,48,56]}
+{"kind":"textbox","id":"sh/adcrapwr","slide":5,"text":"На два ниже","textPreview":"На два ниже","textChars":11,"textLines":1,"bbox":[848,260,330,34]}
+{"kind":"textbox","id":"sh/belsjuxc","slide":5,"text":"1250 А","textPreview":"1250 А","textChars":6,"textLines":1,"bbox":[848,310,330,82]}
+{"kind":"textbox","id":"sh/kje9gjet","slide":5,"text":"Пересчитываются шины, пакеты, боковины, профиль или лист, изоляция, потребность, резерв и заказ материалов.","textPreview":"Пересчитываются шины, пакеты, боковины, профиль или лист, изоляция, потребность, резерв и заказ материалов.","textChars":107,"textLines":1,"bbox":[44,474,1150,88]}
+{"kind":"textbox","id":"sh/lknapofe","slide":5,"text":"Сценарий должен оставаться единым во всех разделах.","textPreview":"Сценарий должен оставаться единым во всех разделах.","textChars":51,"textLines":1,"bbox":[44,584,900,38]}
+{"kind":"textbox","id":"sh/yhcre9wn","slide":5,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/zilsnex8","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"notes","id":"nt/1eza1f","slide":5,"text":"После загрузки спецификации проверьте сценарий номинального тока. Исходный номинал сохраняет параметры заказа. Кнопка на один номинал ниже переводит, например, две тысячи ампер в тысячу шестьсот. Кнопка на два номинала ниже переводит тот же заказ в тысячу двести пятьдесят ампер. Пересчитывается не только цена шины. Меняются сечение и количество пакетов, боковины, профиль или лист, изоляция и все зависящие материалы. Выбранный сценарий должен затем перейти в потребность, резервирование и заказ материалов.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}
+{"kind":"slide","id":"sl/3k1pol","slide":6,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/i9srqhc3","slide":6,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/5c3a1wbu","slide":6,"text":"Проверяйте карточку каждого элемента","textPreview":"Проверяйте карточку каждого элемента","textChars":36,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/kba9sru9","slide":6,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/v618v2dc","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/a5srmxc7","slide":6,"text":"Карточка — источник параметров и ресурсной спецификации.","textPreview":"Карточка — источник параметров и ресурсной спецификации.","textChars":56,"textLines":1,"bbox":[44,166,552,74]}
+{"kind":"shape","id":"sh/x8jqxcbi","slide":6,"bbox":[44,263,16,16]}
+{"kind":"textbox","id":"sh/w7a9o7ux","slide":6,"text":"Тип, номинал, проводность и артикул","textPreview":"Тип, номинал, проводность и артикул","textChars":35,"textLines":1,"bbox":[78,258,514,68]}
+{"kind":"shape","id":"sh/f2ls76tw","slide":6,"bbox":[44,335,16,16]}
+{"kind":"textbox","id":"sh/u1cry1cb","slide":6,"text":"Шина и L1/L2/L3","textPreview":"Шина и L1/L2/L3","textChars":15,"textLines":1,"bbox":[78,330,514,68]}
+{"kind":"shape","id":"sh/s3axwfip","slide":6,"bbox":[44,407,16,16]}
+{"kind":"textbox","id":"sh/t4je5kja","slide":6,"text":"Количество на строку","textPreview":"Количество на строку","textChars":20,"textLines":1,"bbox":[78,402,514,68]}
+{"kind":"shape","id":"sh/618fup0j","slide":6,"bbox":[44,479,16,16]}
+{"kind":"textbox","id":"sh/r2hw3a14","slide":6,"text":"Стоимость и ресурсы на один элемент","textPreview":"Стоимость и ресурсы на один элемент","textChars":35,"textLines":1,"bbox":[78,474,514,68]}
+{"kind":"shape","id":"sh/4fqdsfit","slide":6,"bbox":[674,158,562,486]}
+{"kind":"image","id":"im/q9gfm14v","slide":6,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[680,164,550,474]}
+{"kind":"notes","id":"nt/3k1pol","slide":6,"text":"Каждая карточка элемента содержит тип, номинальный ток, проводность, артикул, параметры шин, размеры L1, L2, L3 и количество. Раскрывайте блок ресурсной спецификации и проверяйте потребность на один элемент и на всю строку. Если размер изменён вручную, система должна показать источник изменения. Нерассчитанная строка не должна попадать в итоговую стоимость как рассчитанная. Для прямых секций FE, ATSC и PI корпус может выполняться из подтверждённого профиля. Для непрямых элементов применяется лист согласно конструкторской документации.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Проверяйте карточку каждого элемента», 07.09.2026"}
+{"kind":"slide","id":"sl/xgeddh","slide":7,"title":"НОВАЯ ФУНКЦИЯ","textShapes":16}
+{"kind":"textbox","id":"sh/i1sv2pgz","slide":7,"text":"НОВАЯ ФУНКЦИЯ","textPreview":"НОВАЯ ФУНКЦИЯ","textChars":13,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/5o3ex4fa","slide":7,"text":"Excel выгружается по одному элементу или по выбранной группе","textPreview":"Excel выгружается по одному элементу или по выбранной группе","textChars":60,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/4nud4zy5","slide":7,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/rqlwzuxg","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/6pcv69gv","slide":7,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[44,194,70,36]}
+{"kind":"textbox","id":"sh/ts3e14fm","slide":7,"text":"Один элемент","textPreview":"Один элемент","textChars":12,"textLines":1,"bbox":[44,250,340,48]}
+{"kind":"textbox","id":"sh/srud8zy1","slide":7,"text":"Откройте карточку и нажмите «Выгрузить Excel».","textPreview":"Откройте карточку и нажмите «Выгрузить Excel».","textChars":46,"textLines":1,"bbox":[44,330,340,128]}
+{"kind":"textbox","id":"sh/fulw3exs","slide":7,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[444,194,70,36]}
+{"kind":"textbox","id":"sh/etcva9g7","slide":7,"text":"Несколько элементов","textPreview":"Несколько элементов","textChars":19,"textLines":1,"bbox":[444,250,340,48]}
+{"kind":"textbox","id":"sh/w3qxgzqp","slide":7,"text":"Отметьте флажки «В Excel» и выгрузите выбранные.","textPreview":"Отметьте флажки «В Excel» и выгрузите выбранные.","textChars":48,"textLines":1,"bbox":[444,330,340,128]}
+{"kind":"textbox","id":"sh/xozep4ra","slide":7,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[844,194,70,36]}
+{"kind":"textbox","id":"sh/a1ofep8j","slide":7,"text":"Состав файла","textPreview":"Состав файла","textChars":12,"textLines":1,"bbox":[844,250,340,48]}
+{"kind":"textbox","id":"sh/v2xwnu94","slide":7,"text":"Сводная спецификация, перечень элементов и детализация.","textPreview":"Сводная спецификация, перечень элементов и детализация.","textChars":55,"textLines":1,"bbox":[844,330,340,128]}
+{"kind":"shape","id":"sh/4rqxkzql","slide":7,"bbox":[44,520,1188,90]}
+{"kind":"textbox","id":"sh/5szyt4r6","slide":7,"text":"Одинаковые материалы объединяются; количество, длина, масса и стоимость суммируются.","textPreview":"Одинаковые материалы объединяются; количество, длина, масса и стоимость суммируются.","textChars":84,"textLines":1,"bbox":[70,545,1130,46]}
+{"kind":"textbox","id":"sh/ip8fi98v","slide":7,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/jqhwre9g","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"notes","id":"nt/xgeddh","slide":7,"text":"В новой функции Excel можно выгружать ресурсы двумя способами. Первый способ — нажать кнопку выгрузки в карточке конкретного рассчитанного элемента. Второй — отметить несколько карточек флажком «В Excel» и скачать общую спецификацию выбранной группы. В файле создаются три листа: сводная ресурсная спецификация, перечень выбранных элементов и детализация ресурсов по каждому элементу. Одинаковые материалы объединяются, а количество, длина, масса и стоимость суммируются. Нерассчитанные элементы выбрать нельзя.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}
+{"kind":"slide","id":"sl/16bm4f","slide":8,"title":"СТЫКОВОЧНЫЙ ЭЛЕМЕНТ G","textShapes":9}
+{"kind":"textbox","id":"sh/25c32hgj","slide":8,"text":"СТЫКОВОЧНЫЙ ЭЛЕМЕНТ G","textPreview":"СТЫКОВОЧНЫЙ ЭЛЕМЕНТ G","textChars":21,"textLines":1,"bbox":[44,42,520,30]}
+{"kind":"textbox","id":"sh/p8n2dcza","slide":8,"text":"G — отдельный элемент,\nа не часть секции","textPreview":"G — отдельный элемент, | а не часть секции","textChars":40,"textLines":2,"bbox":[44,132,710,180]}
+{"kind":"textbox","id":"sh/o7el47yp","slide":8,"text":"L1 = 0   ·   L2 = 0   ·   L3 = 0","textPreview":"L1 = 0   ·   L2 = 0   ·   L3 = 0","textChars":32,"textLines":1,"bbox":[44,354,760,60]}
+{"kind":"shape","id":"sh/ba5kfmhg","slide":8,"bbox":[790,155,16,16]}
+{"kind":"textbox","id":"sh/a9w36hgv","slide":8,"text":"Собственные номинал и проводность","textPreview":"Собственные номинал и проводность","textChars":33,"textLines":1,"bbox":[824,150,396,84]}
+{"kind":"shape","id":"sh/xcn2hwz6","slide":8,"bbox":[790,243,16,16]}
+{"kind":"textbox","id":"sh/cbel8ry1","slide":8,"text":"Собственный артикул и количество","textPreview":"Собственный артикул и количество","textChars":32,"textLines":1,"bbox":[824,238,396,84]}
+{"kind":"shape","id":"sh/zepkjmhc","slide":8,"bbox":[790,331,16,16]}
+{"kind":"textbox","id":"sh/ydw3a1gr","slide":8,"text":"Собственная ресурсная спецификация","textPreview":"Собственная ресурсная спецификация","textChars":34,"textLines":1,"bbox":[824,326,396,84]}
+{"kind":"shape","id":"sh/0ba9o3mp","slide":8,"bbox":[790,419,16,16]}
+{"kind":"textbox","id":"sh/1c3ax8na","slide":8,"text":"4P и 5P рассчитываются раздельно","textPreview":"4P и 5P рассчитываются раздельно","textChars":32,"textLines":1,"bbox":[824,414,396,84]}
+{"kind":"textbox","id":"sh/epsrmt4z","slide":8,"text":"Не включать в FE, CD, CP, ZD, ZDP и другие семейства.","textPreview":"Не включать в FE, CD, CP, ZD, ZDP и другие семейства.","textChars":53,"textLines":1,"bbox":[44,530,1120,54]}
+{"kind":"textbox","id":"sh/fq1svy54","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"notes","id":"nt/16bm4f","slide":8,"text":"Стыковочный элемент G всегда является отдельным объектом расчёта. Его нельзя включать в FE, CD, CP, ZD, ZDP или другое семейство секций. Для стыка значения L1, L2 и L3 всегда равны нулю. При этом у него есть собственный номинал, проводность, артикул, количество и ресурсная спецификация по конструкторской документации. Стыки четырёхпроводного и пятипроводного исполнения рассчитываются раздельно. В пятипроводном варианте добавляется шина PE, но сам стык по-прежнему остаётся отдельной строкой.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}
+{"kind":"slide","id":"sl/fq5qbv","slide":9,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/nyhw7uxw","slide":9,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/ozqx0zeh","slide":9,"text":"Потребность учитывает склад и чужие резервы","textPreview":"Потребность учитывает склад и чужие резервы","textChars":43,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/90zy94f2","slide":9,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/etofupgf","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/zuxw3uxk","slide":9,"text":"Потребность — это не просто сумма спецификаций.","textPreview":"Потребность — это не просто сумма спецификаций.","textChars":47,"textLines":1,"bbox":[674,166,552,74]}
+{"kind":"shape","id":"sh/0v6xwze5","slide":9,"bbox":[674,263,16,16]}
+{"kind":"textbox","id":"sh/1wfe54fq","slide":9,"text":"Требуется и находится на складе","textPreview":"Требуется и находится на складе","textChars":31,"textLines":1,"bbox":[708,258,514,68]}
+{"kind":"shape","id":"sh/ypsf69wj","slide":9,"bbox":[674,335,16,16]}
+{"kind":"textbox","id":"sh/jq1gfex4","slide":9,"text":"Зарезервировано и свободно","textPreview":"Зарезервировано и свободно","textChars":26,"textLines":1,"bbox":[708,330,514,68]}
+{"kind":"shape","id":"sh/zehk3e1c","slide":9,"bbox":[674,407,16,16]}
+{"kind":"textbox","id":"sh/yd83utkr","slide":9,"text":"В дороге, оплачено, у поставщика","textPreview":"В дороге, оплачено, у поставщика","textChars":32,"textLines":1,"bbox":[708,402,514,68]}
+{"kind":"shape","id":"sh/lgz25oji","slide":9,"bbox":[674,479,16,16]}
+{"kind":"textbox","id":"sh/kfqlwj2x","slide":9,"text":"Дефицит и требуется заказать","textPreview":"Дефицит и требуется заказать","textChars":28,"textLines":1,"bbox":[708,474,514,68]}
+{"kind":"shape","id":"sh/7ihk7y1o","slide":9,"bbox":[44,158,562,486]}
+{"kind":"image","id":"im/pszm5kfy","slide":9,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[50,164,550,474]}
+{"kind":"notes","id":"nt/fq5qbv","slide":9,"text":"После проверки калькуляции переходите в раздел потребности и склада. Для совместного расчёта выберите необходимые заказы. Таблица должна показывать требуемое количество, общий складской остаток, резерв, свободный остаток, материалы в дороге, оплаченные позиции, производство у поставщика, доступное количество, дефицит и объём к заказу. Чужой резерв не считается свободным остатком. Кнопка выгрузки потребности формирует Excel с теми же показателями, чтобы данные на экране и в файле можно было сопоставить.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Потребность учитывает склад и чужие резервы», 07.09.2026"}
+{"kind":"slide","id":"sl/namspg","slide":10,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/2d8radob","slide":10,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/pgzq587m","slide":10,"text":"Перед закупкой проверьте контрольный контур","textPreview":"Перед закупкой проверьте контрольный контур","textChars":43,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/4fq9c361","slide":10,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/r2hs7ips","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/qh8redo7","slide":10,"text":"Режим закупки определяет, что попадёт в Excel для снабжения.","textPreview":"Режим закупки определяет, что попадёт в Excel для снабжения.","textChars":60,"textLines":1,"bbox":[44,166,552,74]}
+{"kind":"shape","id":"sh/d4ja9s7y","slide":10,"bbox":[44,263,16,16]}
+{"kind":"textbox","id":"sh/c3q9gn6d","slide":10,"text":"С учётом склада — заказывается дефицит","textPreview":"С учётом склада — заказывается дефицит","textChars":38,"textLines":1,"bbox":[78,258,514,68]}
+{"kind":"shape","id":"sh/76x8vypo","slide":10,"bbox":[44,335,16,16]}
+{"kind":"textbox","id":"sh/6lor2to3","slide":10,"text":"Без учёта склада — полная потребность","textPreview":"Без учёта склада — полная потребность","textChars":37,"textLines":1,"bbox":[78,330,514,68]}
+{"kind":"shape","id":"sh/gjudgjut","slide":10,"bbox":[44,407,16,16]}
+{"kind":"textbox","id":"sh/hk3e9ove","slide":10,"text":"Перечислите все включённые заказы","textPreview":"Перечислите все включённые заказы","textChars":33,"textLines":1,"bbox":[78,402,514,68]}
+{"kind":"shape","id":"sh/uhcve9cn","slide":10,"bbox":[44,479,16,16]}
+{"kind":"textbox","id":"sh/filc7ed8","slide":10,"text":"Отдельно фиксируйте позиции для замены","textPreview":"Отдельно фиксируйте позиции для замены","textChars":38,"textLines":1,"bbox":[78,474,514,68]}
+{"kind":"shape","id":"sh/4nudk3up","slide":10,"bbox":[674,158,562,486]}
+{"kind":"image","id":"im/ep8vy9oz","slide":10,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[680,164,550,474]}
+{"kind":"notes","id":"nt/namspg","slide":10,"text":"Перед формированием заказа материалов проверьте контрольный контур. В нём видно, какие документы относятся к проекту, какой приоритет склада установлен и какие позиции подтверждены правилами. Для снабжения доступны два режима: с учётом складских остатков и без учёта. Первый режим заказывает только дефицит. Второй показывает полную потребность проекта. В сравнительной таблице можно сопоставить несколько заказов, исходные номиналы и позиции для замены, а также оценить общий бюджет закупки.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Перед закупкой проверьте контрольный контур», 07.09.2026"}
+{"kind":"slide","id":"sl/ds01sr","slide":11,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/3m5kju5w","slide":11,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/onelsz61","slide":11,"text":"Резерв принадлежит конкретному проекту","textPreview":"Резерв принадлежит конкретному проекту","textChars":38,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/po72lknm","slide":11,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/exw3m5oz","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/fi5kfa5k","slide":11,"text":"Чужой резерв нельзя автоматически использовать для другого заказа.","textPreview":"Чужой резерв нельзя автоматически использовать для другого заказа.","textChars":66,"textLines":1,"bbox":[674,166,552,74]}
+{"kind":"shape","id":"sh/gjelof65","slide":11,"bbox":[674,263,16,16]}
+{"kind":"textbox","id":"sh/1kn2hknq","slide":11,"text":"Проверяйте код 1С и свободный остаток","textPreview":"Проверяйте код 1С и свободный остаток","textChars":37,"textLines":1,"bbox":[708,258,514,68]}
+{"kind":"shape","id":"sh/ydg3y94j","slide":11,"bbox":[674,335,16,16]}
+{"kind":"textbox","id":"sh/zep4re5o","slide":11,"text":"Перенос — только после подтверждения","textPreview":"Перенос — только после подтверждения","textChars":36,"textLines":1,"bbox":[708,330,514,68]}
+{"kind":"shape","id":"sh/zyhszyl4","slide":11,"bbox":[674,407,16,16]}
+{"kind":"textbox","id":"sh/yxorqtkj","slide":11,"text":"Дефицит подсвечивается красным","textPreview":"Дефицит подсвечивается красным","textChars":30,"textLines":1,"bbox":[708,402,514,68]}
+{"kind":"shape","id":"sh/lkza1o3a","slide":11,"bbox":[674,479,16,16]}
+{"kind":"textbox","id":"sh/0jq9sj2p","slide":11,"text":"Каждая операция сохраняется в журнале","textPreview":"Каждая операция сохраняется в журнале","textChars":37,"textLines":1,"bbox":[708,474,514,68]}
+{"kind":"shape","id":"sh/nmhs3ylg","slide":11,"bbox":[44,158,562,486]}
+{"kind":"image","id":"im/5g3it0ra","slide":11,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[50,164,550,474]}
+{"kind":"notes","id":"nt/ds01sr","slide":11,"text":"Раздел резервов закрепляет конкретный материал за конкретным проектом. В таблице проверяйте код 1С, материал, общий и свободный остаток, зарезервированное количество, проект, дату и источник операции. Зарезервированный материал автоматически исключается из доступного остатка других проектов. Перенос резерва выполняется только после явного подтверждения. Если у исходного проекта возникает дефицит, проект и материал подсвечиваются, причина фиксируется, а операция сохраняется в журнале.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Резерв принадлежит конкретному проекту», 07.09.2026"}
+{"kind":"slide","id":"sl/v31jtr","slide":12,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/8ja1k7a1","slide":12,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/ni1krmtg","slide":12,"text":"Приоритет автоматически пересчитывает даты","textPreview":"Приоритет автоматически пересчитывает даты","textChars":42,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/mhsjihsv","slide":12,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/x832xwbi","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/w7u1orax","slide":12,"text":"Очередь учитывает нормы, подразделения и параллельные операции.","textPreview":"Очередь учитывает нормы, подразделения и параллельные операции.","textChars":63,"textLines":1,"bbox":[44,166,552,74]}
+{"kind":"shape","id":"sh/v6lkvmtc","slide":12,"bbox":[44,263,16,16]}
+{"kind":"textbox","id":"sh/a5cjmhsr","slide":12,"text":"Приоритет 1 — самый высокий","textPreview":"Приоритет 1 — самый высокий","textChars":27,"textLines":1,"bbox":[78,258,514,68]}
+{"kind":"shape","id":"sh/dczilsbe","slide":12,"bbox":[44,335,16,16]}
+{"kind":"textbox","id":"sh/cbq1cnat","slide":12,"text":"Производство: 12 часов × 7 дней","textPreview":"Производство: 12 часов × 7 дней","textChars":31,"textLines":1,"bbox":[78,330,514,68]}
+{"kind":"shape","id":"sh/ypknyxgz","slide":12,"bbox":[44,407,16,16]}
+{"kind":"textbox","id":"sh/zqtor2hk","slide":12,"text":"Вверх или вниз — пересчёт последующих заказов","textPreview":"Вверх или вниз — пересчёт последующих заказов","textChars":45,"textLines":1,"bbox":[78,402,514,68]}
+{"kind":"shape","id":"sh/0bm507y5","slide":12,"bbox":[44,479,16,16]}
+{"kind":"textbox","id":"sh/lcv6tczq","slide":12,"text":"Без приоритета — ожидание постановки в очередь","textPreview":"Без приоритета — ожидание постановки в очередь","textChars":46,"textLines":1,"bbox":[78,474,514,68]}
+{"kind":"shape","id":"sh/md4n2hgb","slide":12,"bbox":[674,158,562,486]}
+{"kind":"image","id":"im/or654ry9","slide":12,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[680,164,550,474]}
+{"kind":"notes","id":"nt/v31jtr","slide":12,"text":"Производственное планирование опирается на очередь объектов. Приоритет один является самым высоким. Кнопки вверх и вниз изменяют место проекта и запускают пересчёт последующих дат. Новый заказ без приоритета находится в конце очереди и визуально выделяется. Дата готовности рассчитывается из состава заказа, количества элементов, операций, подразделений, норм времени и доступной загрузки. Для производства используется календарь двенадцать часов в сутки, семь дней в неделю, при этом параллельные операции подразделений не должны складываться в один последовательный поток.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Приоритет автоматически пересчитывает даты», 07.09.2026"}
+{"kind":"slide","id":"sl/offepo","slide":13,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/5wnm9cbe","slide":13,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/itc3yhsn","slide":13,"text":"Агент показывает, каких данных не хватает","textPreview":"Агент показывает, каких данных не хватает","textChars":41,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/jul47mt8","slide":13,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/sjel4rap","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/tknmdwba","slide":13,"text":"Автоматическая сверка не заменяет утверждённое правило.","textPreview":"Автоматическая сверка не заменяет утверждённое правило.","textChars":55,"textLines":1,"bbox":[674,166,552,74]}
+{"kind":"shape","id":"sh/6hw32hsz","slide":13,"bbox":[674,263,16,16]}
+{"kind":"textbox","id":"sh/7i54bmtk","slide":13,"text":"Рассчитанные и нерассчитанные группы","textPreview":"Рассчитанные и нерассчитанные группы","textChars":36,"textLines":1,"bbox":[708,258,514,68]}
+{"kind":"shape","id":"sh/gne58ra1","slide":13,"bbox":[674,335,16,16]}
+{"kind":"textbox","id":"sh/ho7mhwbm","slide":13,"text":"Причина отсутствия расчёта","textPreview":"Причина отсутствия расчёта","textChars":26,"textLines":1,"bbox":[708,330,514,68]}
+{"kind":"shape","id":"sh/1kva54ze","slide":13,"bbox":[674,407,16,16]}
+{"kind":"textbox","id":"sh/0jmtwjyt","slide":13,"text":"Какие КД и нормы нужно предоставить","textPreview":"Какие КД и нормы нужно предоставить","textChars":35,"textLines":1,"bbox":[708,402,514,68]}
+{"kind":"shape","id":"sh/zids3eh8","slide":13,"bbox":[674,479,16,16]}
+{"kind":"textbox","id":"sh/ex4bu9gn","slide":13,"text":"История изменений сохраняется","textPreview":"История изменений сохраняется","textChars":29,"textLines":1,"bbox":[708,474,514,68]}
+{"kind":"shape","id":"sh/9ofa9oza","slide":13,"bbox":[44,158,562,486]}
+{"kind":"image","id":"im/3axcr218","slide":13,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[50,164,550,474]}
+{"kind":"notes","id":"nt/offepo","slide":13,"text":"Очередь параметризации показывает, какие позиции уже закрыты утверждёнными правилами, а какие требуют исходных данных. Агент сверки только анализирует и сообщает причину отсутствия расчёта. Он не должен самостоятельно придумывать формулы или подменять недостающие нормы. Для каждой нерассчитанной группы необходимо передать конструкторскую документацию, таблицу стандартных материалов и подтверждённые производственные нормы. После обновления правила результат сохраняется в истории проекта.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Агент показывает, каких данных не хватает», 07.09.2026"}
+{"kind":"slide","id":"sl/ynhpmj","slide":14,"title":"ПРОИЗВОДСТВО","textShapes":10}
+{"kind":"textbox","id":"sh/yxk7u1kf","slide":14,"text":"ПРОИЗВОДСТВО","textPreview":"ПРОИЗВОДСТВО","textChars":12,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/50b6pwj6","slide":14,"text":"КОМ и сменные задания закрывают рабочий цикл","textPreview":"КОМ и сменные задания закрывают рабочий цикл","textChars":44,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/kz2pwr2l","slide":14,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/ba9ojm14","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/a907qhkj","slide":14,"text":"Подбор КОМ","textPreview":"Подбор КОМ","textChars":10,"textLines":1,"bbox":[44,160,540,34]}
+{"kind":"shape","id":"sh/xwb6lwju","slide":14,"bbox":[44,208,570,360]}
+{"kind":"textbox","id":"sh/f6d8vq18","slide":14,"text":"Сменное задание","textPreview":"Сменное задание","textChars":15,"textLines":1,"bbox":[654,160,540,34]}
+{"kind":"shape","id":"sh/u5472lkn","slide":14,"bbox":[654,208,578,360]}
+{"kind":"textbox","id":"sh/p0jqlsnq","slide":14,"text":"Несопоставленные позиции не подменяются автоматически.","textPreview":"Несопоставленные позиции не подменяются автоматически.","textChars":54,"textLines":1,"bbox":[44,594,570,44]}
+{"kind":"textbox","id":"sh/2xsrqxof","slide":14,"text":"План, факт и причины отклонений сохраняются.","textPreview":"План, факт и причины отклонений сохраняются.","textChars":44,"textLines":1,"bbox":[654,594,578,44]}
+{"kind":"textbox","id":"sh/ny18jipk","slide":14,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/0bq9on69","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"image","id":"im/9gfqds3i","slide":14,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[50,214,558,348]}
+{"kind":"image","id":"im/n698j6p4","slide":14,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[660,214,566,348]}
+{"kind":"notes","id":"nt/ynhpmj","slide":14,"text":"Подбор КОМ и сменные задания относятся к последующим рабочим операциям. В подборе КОМ проверяются строки заказов, соответствие прайсу, цена с НДС, остаток и выбранный аналог. Несопоставленная позиция не должна автоматически получать случайный товар. В сменном задании указываются дата, цех, мастер, пост, работник, проект, задание, план и комментарий. Для производственного отдела рабочий день принят равным двенадцати часам. Фактическое выполнение и причины отклонений фиксируются в сменной ведомости.\n\n[Sources]\n- Пользовательские скриншоты KLM v32: «Подбор КОМ» и «Сменные задания», 07.09.2026"}
+{"kind":"slide","id":"sl/f2hu9m","slide":15,"title":"ИНСТРУКЦИЯ","textShapes":9}
+{"kind":"textbox","id":"sh/xofa1kze","slide":15,"text":"ИНСТРУКЦИЯ","textPreview":"ИНСТРУКЦИЯ","textChars":10,"textLines":1,"bbox":[44,34,260,24]}
+{"kind":"textbox","id":"sh/alorq503","slide":15,"text":"Правила меняются только с подтверждённым основанием","textPreview":"Правила меняются только с подтверждённым основанием","textChars":51,"textLines":1,"bbox":[44,70,1188,76]}
+{"kind":"textbox","id":"sh/bmxszaho","slide":15,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/kbqtwfi5","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"textbox","id":"sh/lcza5kzq","slide":15,"text":"Расчёт должен оставаться воспроизводимым и проверяемым.","textPreview":"Расчёт должен оставаться воспроизводимым и проверяемым.","textChars":55,"textLines":1,"bbox":[44,166,552,74]}
+{"kind":"shape","id":"sh/y9obup0z","slide":15,"bbox":[44,263,16,16]}
+{"kind":"textbox","id":"sh/jaxs3ahk","slide":15,"text":"Потери, надбавка и НДС — управляемые параметры","textPreview":"Потери, надбавка и НДС — управляемые параметры","textChars":46,"textLines":1,"bbox":[78,258,514,68]}
+{"kind":"shape","id":"sh/0fm9kvi1","slide":15,"bbox":[44,335,16,16]}
+{"kind":"textbox","id":"sh/1gvat0zm","slide":15,"text":"Правила имеют статус и источник","textPreview":"Правила имеют статус и источник","textChars":31,"textLines":1,"bbox":[78,330,514,68]}
+{"kind":"shape","id":"sh/54j6d0na","slide":15,"bbox":[44,407,16,16]}
+{"kind":"textbox","id":"sh/k3a54v6p","slide":15,"text":"Боковина выбирается после шины и пакетов","textPreview":"Боковина выбирается после шины и пакетов","textChars":40,"textLines":1,"bbox":[78,402,514,68]}
+{"kind":"shape","id":"sh/j21obq54","slide":15,"bbox":[44,479,16,16]}
+{"kind":"textbox","id":"sh/i1sn25oj","slide":15,"text":"Все изменения сохраняются для аудита","textPreview":"Все изменения сохраняются для аудита","textChars":36,"textLines":1,"bbox":[78,474,514,68]}
+{"kind":"shape","id":"sh/ts36hkn6","slide":15,"bbox":[674,158,562,486]}
+{"kind":"image","id":"im/v6983q1g","slide":15,"name":"","geometry":"roundRect","alt":"Скриншот интерфейса KLM v32","bbox":[680,164,550,474]}
+{"kind":"notes","id":"nt/f2hu9m","slide":15,"text":"Раздел управления правилами содержит финансовые параметры и утверждённые расчётные правила. Технологические потери по умолчанию равны одному проценту, надбавка вводится вручную, НДС может быть двадцать или ноль процентов. Изменение правила должно иметь понятное основание и сохраняться в истории. Особое внимание уделяйте боковинам: сначала определяется семейство элемента, затем номинал, размер шин и количество пакетов, после чего выбирается боковина высотой на три миллиметра больше шины. Только затем подставляется профиль или лист и код 1С.\n\n[Sources]\n- Пользовательский скриншот KLM v32, раздел «Правила меняются только с подтверждённым основанием», 07.09.2026"}
+{"kind":"slide","id":"sl/y9y9kt","slide":16,"title":"ФИНАЛЬНАЯ ПРОВЕРКА","textShapes":10}
+{"kind":"textbox","id":"sh/zyp4z29k","slide":16,"text":"ФИНАЛЬНАЯ ПРОВЕРКА","textPreview":"ФИНАЛЬНАЯ ПРОВЕРКА","textChars":18,"textLines":1,"bbox":[44,42,400,30]}
+{"kind":"textbox","id":"sh/0zi5s7q5","slide":16,"text":"Перед выгрузкой убедитесь,\nчто весь расчёт согласован","textPreview":"Перед выгрузкой убедитесь, | что весь расчёт согласован","textChars":53,"textLines":2,"bbox":[44,112,1060,132]}
+{"kind":"shape","id":"sh/10r61crq","slide":16,"bbox":[44,291,16,16]}
+{"kind":"textbox","id":"sh/q9gnmxs3","slide":16,"text":"Выбран правильный проект и перечислены все заказы","textPreview":"Выбран правильный проект и перечислены все заказы","textChars":49,"textLines":1,"bbox":[78,286,1106,60]}
+{"kind":"shape","id":"sh/rap4v298","slide":16,"bbox":[44,355,16,16]}
+{"kind":"textbox","id":"sh/svy5o7qt","slide":16,"text":"Номинал, проводность, размеры и количество проверены","textPreview":"Номинал, проводность, размеры и количество проверены","textChars":52,"textLines":1,"bbox":[78,350,1106,60]}
+{"kind":"shape","id":"sh/dw7mxcre","slide":16,"bbox":[44,419,16,16]}
+{"kind":"textbox","id":"sh/a50ny187","slide":16,"text":"Стыки G отделены, нерассчитанные строки устранены","textPreview":"Стыки G отделены, нерассчитанные строки устранены","textChars":49,"textLines":1,"bbox":[78,414,1106,60]}
+{"kind":"shape","id":"sh/bqto7m9s","slide":16,"bbox":[44,483,16,16]}
+{"kind":"textbox","id":"sh/7mh8zilk","slide":16,"text":"Складской режим, резервы и Excel соответствуют сценарию","textPreview":"Складской режим, резервы и Excel соответствуют сценарию","textChars":55,"textLines":1,"bbox":[78,478,1106,60]}
+{"kind":"shape","id":"sh/m18r6dkz","slide":16,"bbox":[44,547,16,16]}
+{"kind":"textbox","id":"sh/9ojq1s3a","slide":16,"text":"Приоритет назначен, плановые даты пересчитаны","textPreview":"Приоритет назначен, плановые даты пересчитаны","textChars":45,"textLines":1,"bbox":[78,542,1106,60]}
+{"kind":"shape","id":"sh/8na98n25","slide":16,"bbox":[44,610,1188,2]}
+{"kind":"textbox","id":"sh/vq183ilg","slide":16,"text":"https://klm-v32.bannikov-06.workers.dev","textPreview":"https://klm-v32.bannikov-06.workers.dev","textChars":39,"textLines":1,"bbox":[44,630,900,32]}
+{"kind":"textbox","id":"sh/upsradkv","slide":16,"text":"KLM v32 · klm-v32.bannikov-06.workers.dev","textPreview":"KLM v32 · klm-v32.bannikov-06.workers.dev","textChars":41,"textLines":1,"bbox":[44,670,700,24]}
+{"kind":"textbox","id":"sh/hsja5s3m","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1175,670,60,24]}
+{"kind":"notes","id":"nt/y9y9kt","slide":16,"text":"Перед использованием результата выполните финальную проверку. Убедитесь, что выбран правильный проект и перечислены все заказы. Проверьте сценарий номинала, проводность, размеры и количество элементов. Раскройте ресурсные спецификации, отдельно проверьте стыки G и нерассчитанные строки. Сопоставьте потребность со складом и резервами, выберите правильный режим закупки и только после этого выгружайте Excel. Плановые даты подтверждайте после назначения приоритета. Такой порядок сохраняет связь между расчётом, материалами, закупкой и производством и делает результат пригодным для аудита.\n\n[Sources]\n- Внутренняя инструкция и утверждённые правила KLM v32, 07.09.2026"}

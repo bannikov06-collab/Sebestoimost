@@ -1,0 +1,13 @@
+# KLM v32 CHANGE 05J
+
+## Approved business rules implemented
+
+1. External market data: USD/RUB from Bank of Russia + LME Aluminium/Copper. Each project stores a market snapshot for 14 days. USD, aluminium and copper have independent review dates. After 14 days each indicator is evaluated independently: if it rises, that indicator is updated and receives a new 14-day period; if it falls, the previous higher value and its original value date are retained, while the review and explanation are appended to history. Applies to all production projects loaded in the system, not only newly created ones.
+2. Production orders automatically create auditable objects in the Objects queue. New orders retain upload order, are placed at the end and highlighted until a numeric priority is assigned. Priority is 1,2,3,... and can be moved up/down. Queue snapshots are persisted. Production scheduling uses independent department capacity calendars so confirmed operations can run in parallel; each calendar uses 12 hours/day, seven days/week.
+3. Production duration is calculated from confirmed piece-calculation assembly norms available in `ВЕДОМОСТЬ ПРОИЗВОДСТВЕННЫХ РАБОТ от 01.08.2026.xlsx`. This is an auditable first schedule layer; operations without a confirmed mapping are not invented.
+4. Material planning supports selecting multiple production orders and aggregates their demand. Availability includes warehouse balance + in transit + paid + in production at supplier. These supply states are persisted in D1 workspace history.
+5. Reservations moved to the first item of section 05. Auto-reservation is by project priority. Stock reserved for other projects is excluded from free availability. Every transfer shows source project, target project, material, quantity, remainder and possible source deficit, then requires explicit confirmation. Reservation rows include date and source; each create/transfer action is written as a separate audit event in D1 workspace history.
+6. Existing Cloudflare URL, D1 and R2 bindings are preserved. No schema migration is required; existing `workspace_records` is used.
+
+## Important calculation boundary
+The production-date estimator currently loads confirmed *assembly* piece-calculation norms that are safely attributable to FE/CD/CP/ZP/TP/ATSC families and nominal ranges. Its scheduler already supports separate department loads and parallel calendars, but it does not silently fabricate missing laser/bending/powder/packing route times. As route-operation mappings are approved, their hours can be added to the existing department-load model without changing the queue or audit model.

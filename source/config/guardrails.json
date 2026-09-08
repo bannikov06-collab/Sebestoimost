@@ -1,0 +1,18 @@
+{
+  "version": "2026-08-24",
+  "writePolicy": "user-approval-required",
+  "agents": {
+    "mode": "read-only",
+    "automaticFixes": false,
+    "databaseWrites": false,
+    "sourceDocumentWrites": false
+  },
+  "ipExecution": {
+    "IP55": "enabled-only-when-explicit",
+    "IP68": "blocked-until-confirmed-source-data",
+    "unknown": "blocked",
+    "conflict": "blocked",
+    "fallbackToIP55": false,
+    "fullyBlockedOrderKeepsCurrentCalculation": true
+  }
+}
