@@ -18,8 +18,8 @@ const localBindingConfig = {
     ? [
         {
           binding: d1,
-          database_name: "site-creator-d1",
-          database_id: SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
+          database_name: "klm-v32-db",
+          database_id: "f177d246-fc9c-4611-9a30-a03cf653673f",
         },
       ]
     : [],
@@ -27,7 +27,7 @@ const localBindingConfig = {
     ? [
         {
           binding: r2,
-          bucket_name: "site-creator-r2",
+          bucket_name: "klm-v32-files",
         },
       ]
     : [],

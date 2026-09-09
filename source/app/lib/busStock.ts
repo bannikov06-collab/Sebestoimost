@@ -4,8 +4,9 @@ export const STOCK_BUS_LENGTH_M = 3;
 export function calculateBusStock(
   config: { count: number; height: number; thickness: number },
   developedMm: number,
+  poles: 4 | 5 = 4,
 ) {
-  const barsTotal = 4 * config.count;
+  const barsTotal = poles * config.count;
   const elementLengthM = developedMm / 1000;
   const busLengthM = barsTotal * elementLengthM;
   const crossSectionM2 = (config.thickness / 1000) * (config.height / 1000);

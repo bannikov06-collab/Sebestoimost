@@ -1,4 +1,4 @@
-import { calculatePeEarBlank, getJointRule } from "./manufacturingRules.ts";
+import { calculatePeEarBlank } from "./manufacturingRules.ts";
 
 export type SectionCode = "FE" | "CD" | "CP" | "ZD" | "ZP" | "TP" | "ZDP" | "TD" | "ATSC" | "ATCP" | "ATCD";
 
@@ -8,7 +8,6 @@ export type NetworkElement = {
   current: number;
   lengths: number[];
   quantity: number;
-  jointQuantity?: number;
 };
 
 export type Item = {
@@ -91,8 +90,6 @@ export function calculateElement(element: NetworkElement, laborRate: number) {
   const isCp = element.code === "CP";
   const busCode = busCodeByHeight[cfg.height] ?? "";
   const peEar = calculatePeEarBlank(element.current);
-  const jointRule = getJointRule(element.current);
-  const jointQuantity = Math.max(0, element.jointQuantity ?? 1);
   const cdBusDevelopedMm = Math.max(developedMm - 166.05, 0);
   const cdBusLengthM = barsTotal * cdBusDevelopedMm / 1000;
   const effectiveInsulatedLengthM = isCd ? Math.max(cdBusDevelopedMm - 60, 0) / 1000 : insulatedLengthM;
@@ -143,18 +140,6 @@ export function calculateElement(element: NetworkElement, laborRate: number) {
     row({ code: "00000004273", name: "Стрейч-плёнка ручная", unit: "кг", qty: 0.024, price: 210, group: "Постоянные", confidence: "Подтверждено", note: "Полное наименование 1С: «Стрейч пленка ручная»" }),
   );
 
-  if (jointRule && jointQuantity > 0) {
-    items.push(...jointRule.components.map((component) => row({
-      code: "",
-      name: `${component.designation ? `${component.designation} · ` : ""}${component.name}${component.material ? ` · ${component.material}` : ""}`,
-      unit: "шт",
-      qty: component.quantity * jointQuantity,
-      price: 0,
-      group: `Стык ${jointRule.designation}`,
-      confidence: "Подтверждено",
-      note: `${component.source}; ${jointQuantity} комплект(а) стыка на элемент`,
-    })));
-  }
 
   const materials = items.reduce((sum, item) => sum + item.total, 0);
   const welding = verticalWelded.has(element.code) ? materials * 0.12 : 0;
@@ -163,5 +148,5 @@ export function calculateElement(element: NetworkElement, laborRate: number) {
   const gas = 17.3 / 1.8 * 11.5;
   const electricity = 8.7 / 1.8 * 11.28;
   const unitCost = materials + labor + gas + electricity;
-  return { items, materials, labor, welding, gas, electricity, unitCost, totalCost: unitCost * element.quantity, busMass: items[0].qty, developedMm, petBlankWidthM, cfg, peEar, jointRule, jointQuantity };
+  return { items, materials, labor, welding, gas, electricity, unitCost, totalCost: unitCost * element.quantity, busMass: items[0].qty, developedMm, petBlankWidthM, cfg, peEar };
 }

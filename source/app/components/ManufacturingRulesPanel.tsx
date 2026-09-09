@@ -1,7 +1,7 @@
 "use client";
 
 import { currents } from "../lib/calculation";
-import { calculatePeEarBlank, getJointRule, jointRules } from "../lib/manufacturingRules";
+import { calculatePeEarBlank, getJointRule, jointRules, GASKETING_RULE, calculateGasketingForJoint, BUSWAY_BUS_SECTION_BY_THICKNESS } from "../lib/manufacturingRules";
 
 const number = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 3 });
 
@@ -22,6 +22,11 @@ export default function ManufacturingRulesPanel() {
       <div className="panel-title"><div><span>G</span><h2>Стыковочные элементы IP55, 4P, шина 6/7 мм</h2></div><small>КД + Excel-состав</small></div>
       <div className="notice ok-notice"><b>Толщина подтверждена</b><span>Все загруженные исполнения стыков применимы для шин толщиной 6 и 7 мм. Указания 6/7 мм в наименованиях Excel не считаются противоречием.</span></div>
       <div className="table-wrap"><table className="rules-source-table"><thead><tr><th>Ток</th><th>Сборка</th><th>Соединитель</th><th>Шина</th><th>Высота</th><th>Масса сборки</th><th>Позиций состава</th></tr></thead><tbody>{jointRules.map((rule) => <tr key={rule.currentA}><td><b>{rule.currentA} А</b></td><td>{rule.designation}</td><td>{rule.connectorDesignation}</td><td>{rule.supportedBusbarThicknessMm.join("/")} мм</td><td>{rule.heightMm} мм</td><td>{number.format(rule.totalMassKg)} кг</td><td>{rule.components.length}</td></tr>)}</tbody></table></div>
+
+      <div className="rules-source-grid">
+        <article><span>Сечение рабочей шины</span><strong>6 мм → {BUSWAY_BUS_SECTION_BY_THICKNESS[6].label}</strong><small>7 мм → {BUSWAY_BUS_SECTION_BY_THICKNESS[7].label}. Утверждено по результатам расчетов и испытаний.</small></article>
+        <article><span>Gasketing</span><strong>{GASKETING_RULE.gramsPerMeter} г/м · А:Б {GASKETING_RULE.ratioA}:{GASKETING_RULE.ratioB}</strong><small>А {GASKETING_RULE.componentACode}; Б {GASKETING_RULE.componentBCode}; на 1 стык по КД: {calculateGasketingForJoint(1).lengthM.toFixed(3)} м.</small></article>
+      </div>
       <details className="transfer-details"><summary>Показать полный состав выбранных стыков</summary><div className="joint-rule-cards">{jointRules.map((rule) => <article key={rule.currentA}><h3>{rule.currentA} А · {rule.designation}</h3><div className="table-wrap"><table><thead><tr><th>Обозначение</th><th>Наименование</th><th>Материал</th><th>Кол-во</th><th>Источник</th></tr></thead><tbody>{rule.components.map((item, index) => <tr key={`${item.designation}-${item.name}-${index}`}><td>{item.designation || "—"}</td><td>{item.name}</td><td>{item.material || "—"}</td><td>{item.quantity}</td><td>{item.source}</td></tr>)}</tbody></table></div></article>)}</div></details>
       {!getJointRule(500) && <div className="notice warn-notice"><b>500 А не назначен</b><span>Исполнение уха PE L=79 мм подтверждено чертежом 260.045, но отдельного листа G и Excel-состава стыка 500 А в загруженном комплекте нет.</span></div>}
       <div className="notice warn-notice"><b>Коды и цены стыков</b><span>Коды 1С для позиций состава в доступной базе не найдены. До загрузки кодов и прайса позиции сохраняются по обозначению и наименованию, без автоматически назначенной стоимости.</span></div>

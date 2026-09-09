@@ -1,4 +1,5 @@
 {
-  "d1": "DB",
-  "r2": "BUCKET"
+    "r2":  "BUCKET",
+    "d1":  "DB",
+    "project_id":  "klm-v32-cloudflare"
 }

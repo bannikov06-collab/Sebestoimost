@@ -42,6 +42,7 @@ export type ControlPilotDocument = {
 const statusLabels: Record<AvailabilityStatus, string> = {
   warehouse: "На складе",
   in_transit: "В пути от поставщика",
+  manufacturer_production: "В производстве у поставщика",
   manufacturer_ready: "Готово у изготовителя",
 };
 
@@ -49,7 +50,7 @@ const scenarioPresets: Array<{ label: string; statuses: AvailabilityStatus[] }> 
   { label: "Без обеспеченности", statuses: [] },
   { label: "Только склад", statuses: ["warehouse"] },
   { label: "Склад + в пути", statuses: ["warehouse", "in_transit"] },
-  { label: "Склад + в пути + готово", statuses: ["warehouse", "in_transit", "manufacturer_ready"] },
+  { label: "Склад + в пути + производство + готово", statuses: ["warehouse", "in_transit", "manufacturer_production", "manufacturer_ready"] },
 ];
 
 const number = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 3 });
@@ -338,7 +339,7 @@ export default function ControlCalculationPanel({ projectName, projectKey, docum
       <div>
         <h3>Поставка для текущего проекта</h3>
         <div className="control-supply-form">
-          <label>Статус<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value as AvailabilityStatus })}><option value="in_transit">В пути</option><option value="manufacturer_ready">Готово у изготовителя</option></select></label>
+          <label>Статус<select value={form.status} onChange={(event) => setForm({ ...form, status: event.target.value as AvailabilityStatus })}><option value="in_transit">В пути</option><option value="manufacturer_production">В производстве у поставщика</option><option value="manufacturer_ready">Готово у изготовителя</option></select></label>
           <label>Код 1С<input value={form.code} onChange={(event) => setForm({ ...form, code: event.target.value })} placeholder="Ц0000000000" /></label>
           <label className="control-wide">Наименование<input value={form.name} onChange={(event) => setForm({ ...form, name: event.target.value })} /></label>
           <label>Ед.<input value={form.unit} onChange={(event) => setForm({ ...form, unit: event.target.value })} /></label>

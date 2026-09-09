@@ -1,4 +1,4 @@
-export type AvailabilityStatus = "warehouse" | "in_transit" | "manufacturer_ready";
+export type AvailabilityStatus = "warehouse" | "in_transit" | "manufacturer_production" | "manufacturer_ready";
 
 export type ControlDemand = {
   name: string;

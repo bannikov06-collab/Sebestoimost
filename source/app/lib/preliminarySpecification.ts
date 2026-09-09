@@ -1,5 +1,5 @@
 export const COMMERCIAL_LENGTH_DEFAULTS_MM = {
-  S1: 750,
+  S1: 0,
   S2: 1500,
   S3: 2500,
 } as const;
@@ -74,13 +74,16 @@ function metadataValue(matrix: unknown[][], label: string) {
   return "";
 }
 
-export function inferCommercialLength(article: string) {
-  const normalized = normalize(article).toUpperCase();
-  const match = normalized.match(/-(S[123])(?:$|-)/);
-  const lengthClass = (match?.[1] ?? "") as CommercialLengthClass | "";
+export function inferCommercialLength(article: string, item = '') {
+  const normalized = `${normalize(article)} ${normalize(item)}`.toUpperCase();
+  const match = normalized.match(/(?:^|[-\s])(S[123])(?:$|[-\s])/);
+  let lengthClass = (match?.[1] ?? '') as CommercialLengthClass | '';
+  // Preliminary rows marked only as non-standard but without a class fall back to S1,
+  // which is the approved standard-geometry baseline and avoids inventing dimensions.
+  if (!lengthClass && /НЕСТАНДАРТ/.test(normalized)) lengthClass = 'S1';
   if (lengthClass) return { lengthClass, lengthMm: COMMERCIAL_LENGTH_DEFAULTS_MM[lengthClass] };
-  if (/-FE(?:$|-)/.test(normalized)) return { lengthClass: "" as const, lengthMm: 3000 };
-  return { lengthClass: "" as const, lengthMm: 0 };
+  if (/(?:^|[-\s])FE(?:$|[-\s])/.test(normalized) || /(?:^|[-\s])PI(?:[-\d]|$)/.test(normalized)) return { lengthClass: '' as const, lengthMm: 3000 };
+  return { lengthClass: '' as const, lengthMm: 0 };
 }
 
 export function parsePreliminaryMatrix(matrix: unknown[][], filename: string, loadedAt = new Date().toISOString()): PreliminarySpecification {
@@ -101,7 +104,7 @@ export function parsePreliminaryMatrix(matrix: unknown[][], filename: string, lo
     const quantity = numberValue(row[quantityIndex]);
     if (!article && !item) return null;
     if (!(quantity > 0)) return null;
-    const inferred = inferCommercialLength(article);
+    const inferred = inferCommercialLength(article, item);
     return {
       id: `${filename}-${index}`,
       rowNumber: normalize(row[rowNumberIndex]) || String(index + 1),

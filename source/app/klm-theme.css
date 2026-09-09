@@ -1251,3 +1251,157 @@ html[data-theme="light"] .brandmark {
     grid-template-columns: 1fr;
   }
 }
+
+/* KLM v32 approved rules + scenario analysis, 2026-08-27 */
+.market-data-button{position:fixed;right:22px;top:18px;z-index:80;border:1px solid var(--line);background:var(--ref-card);color:var(--ref-ink);border-radius:10px;padding:9px 12px;font-weight:700;box-shadow:0 8px 24px #0004}.market-modal-backdrop{position:fixed;inset:0;z-index:120;background:#05080bb8;display:grid;place-items:center;padding:24px;backdrop-filter:blur(4px)}.market-modal{width:min(980px,96vw);max-height:92vh;overflow:auto}.external-input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}.external-input-grid label{display:grid;gap:7px;padding:13px;border:1px solid var(--line);border-radius:12px;background:var(--ref-field)}.external-input-grid input,.supplier-price-list input,.managed-rule-search{width:100%;border:1px solid var(--line);background:var(--ref-bg-0);color:var(--ref-ink);border-radius:8px;padding:9px}.external-derived{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:12px 0 20px}.external-derived>div{border:1px solid var(--line);border-radius:12px;padding:14px}.external-derived span,.external-derived small{display:block;color:var(--muted)}.external-derived strong{display:block;font-size:24px;margin:4px 0}.supplier-price-list{display:grid;gap:8px;margin:12px 0}.supplier-price-list>div{display:grid;grid-template-columns:1.1fr 1.6fr .8fr .7fr auto;gap:8px}.managed-rules-panel{margin-bottom:16px}.managed-rule-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}.managed-rule-tabs button{border:1px solid var(--line);background:var(--ref-field);color:var(--ref-ink);border-radius:9px;padding:8px 10px}.managed-rule-tabs button.active{border-color:var(--ref-brand-2);color:var(--ref-brand-2)}.managed-rule-tabs span{opacity:.7;margin-left:5px}.managed-rule-layout{display:grid;grid-template-columns:minmax(280px,36%) 1fr;gap:12px;margin-top:12px;min-height:520px}.managed-rule-list{border:1px solid var(--line);border-radius:12px;overflow:auto;max-height:620px;padding:6px;background:var(--ref-bg-0)}.managed-rule-list button{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ref-ink);padding:10px;border-radius:7px}.managed-rule-list button.active,.managed-rule-list button:hover{background:var(--ref-field)}.managed-rule-list strong,.managed-rule-list small,.managed-rule-list em{display:block}.managed-rule-list small{color:var(--muted);margin-top:3px}.managed-rule-list em{color:var(--ref-brand-2);font-size:11px;margin-top:4px}.managed-rule-editor{border:1px solid var(--line);border-radius:12px;padding:14px;background:var(--ref-bg-0)}.managed-rule-editor textarea{width:100%;min-height:390px;background:#090d11;color:#dbe5ef;border:1px solid var(--line);border-radius:9px;padding:12px;font:12px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;margin:12px 0}.managed-rule-actions{display:flex;gap:8px}.scenario-analysis-panel{margin-top:16px}.scenario-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}.scenario-card-grid button{display:flex;flex-direction:column;align-items:flex-start;gap:5px;text-align:left;border:1px solid var(--line);background:var(--ref-field);color:var(--ref-ink);border-radius:12px;padding:14px;min-height:150px}.scenario-card-grid button.active{border-color:var(--ref-brand-2);box-shadow:0 0 0 1px var(--ref-brand-2) inset}.scenario-card-grid button small,.scenario-card-grid button span,.scenario-card-grid button em{color:var(--muted);font-style:normal}.scenario-card-grid button b{font-size:17px;color:var(--ref-brand-2)}.scenario-demand-detail{margin-top:16px}.scenario-demand-detail h3{margin:0}.materials-table td strong+small{margin-top:4px}.procurement-table td:nth-child(4) strong{font-size:16px;color:var(--ref-brand-2)}
+@media(max-width:900px){.external-input-grid,.external-derived,.scenario-card-grid,.managed-rule-layout{grid-template-columns:1fr}.supplier-price-list>div{grid-template-columns:1fr}.market-data-button{position:static;margin:10px}.managed-rule-list{max-height:300px}}
+
+
+/* Lifecycle architecture + separate G-joint block */
+.nav-group-label{margin:12px 12px 5px;padding-top:8px;border-top:1px solid var(--line);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:800}
+.nav-group-label:first-child{margin-top:2px;border-top:0}
+.joint-demand-block{margin:18px 0;padding:18px;border:1px solid color-mix(in srgb,var(--accent) 45%,var(--line));border-radius:14px;background:color-mix(in srgb,var(--panel) 92%,var(--accent) 8%)}
+.joint-demand-block .section-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:10px}
+.joint-demand-block h2{margin:2px 0 0}.joint-demand-block .muted{margin:0 0 12px;color:var(--muted)}
+
+/* CHANGE 05 · dimensional source + terminal ATSC separation */
+.dimension-source.manual{display:block;margin-top:6px;font-size:11px;font-weight:700;color:var(--warning,#d89b2b)}
+.terminal-section-divider{display:grid;gap:4px;margin:24px 0 12px;padding:16px 18px;border:1px solid color-mix(in srgb,var(--accent,#7aa2f7) 45%,transparent);border-radius:14px;background:color-mix(in srgb,var(--panel,#111827) 92%,var(--accent,#7aa2f7) 8%)}
+.terminal-section-divider span{font-size:11px;letter-spacing:.08em;text-transform:uppercase;opacity:.7}.terminal-section-divider strong{font-size:18px}.terminal-section-divider small{opacity:.72}
+.terminal-element-card{border-left:3px solid var(--accent,#7aa2f7)}
+
+/* CHANGE 05B: managed commercial/technology percentages */
+.commercial-rule-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:14px 0}
+.commercial-rule-grid label{display:flex;flex-direction:column;gap:7px;padding:14px;border:1px solid var(--border);border-radius:12px}
+.commercial-rule-grid input{font-size:20px;font-weight:700}
+.commercial-rule-grid small{opacity:.72;line-height:1.35}
+.commercial-summary-card{margin:14px 0;padding:16px;border:1px solid var(--border);border-radius:14px}
+.commercial-summary-card h3{margin:0 0 10px}
+.commercial-summary-card>div{display:flex;justify-content:space-between;gap:16px;padding:7px 0;border-bottom:1px solid var(--border)}
+.commercial-summary-card>div:last-child{border-bottom:0}
+.commercial-summary-card .commercial-final{font-size:1.08em;padding-top:12px}
+@media(max-width:900px){.commercial-rule-grid{grid-template-columns:1fr}}
+
+/* CHANGE 05D · calculation coverage audit */
+.calculation-audit-panel .audit-requirements { margin: 0; padding-left: 18px; font-size: 10px; line-height: 1.45; }
+.calculation-audit-panel .audit-requirements li + li { margin-top: 3px; }
+.calculation-audit-panel td { vertical-align: top; }
+
+/* CHANGE 05E — dark-theme contrast audit and control-order actions. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
+.control-order-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: stretch;
+}
+.control-order-card .example-order {
+  min-width: 0;
+}
+.control-order-delete {
+  align-self: stretch;
+  min-width: 86px;
+  border: 1px solid rgba(255, 95, 95, 0.42);
+  border-radius: 11px;
+  color: #ff9b9b;
+  background: rgba(120, 28, 28, 0.18);
+  padding: 10px 12px;
+  font-size: 10px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.control-order-delete:hover,
+.control-order-delete:focus-visible {
+  border-color: var(--ref-danger);
+  color: #fff;
+  background: rgba(180, 45, 45, 0.34);
+  outline: none;
+}
+
+html[data-theme="dark"] .element-card.expanded,
+html[data-theme="dark"] .control-config-grid > div,
+html[data-theme="dark"] .control-pilot-set,
+html[data-theme="dark"] .control-circuit article,
+html[data-theme="dark"] .stream-grid article,
+html[data-theme="dark"] .flow-step,
+html[data-theme="dark"] .transfer-grid div,
+html[data-theme="dark"] .project-tree-row,
+html[data-theme="dark"] .kom-comparison > div,
+html[data-theme="dark"] .object-row,
+html[data-theme="dark"] .checklist-items label {
+  color: var(--ref-ink);
+  border-color: var(--ref-line);
+  background: var(--ref-card);
+}
+html[data-theme="dark"] .notice.warning,
+html[data-theme="dark"] .warn-notice,
+html[data-theme="dark"] .kom-comparison .risk,
+html[data-theme="dark"] .unsupported-element,
+html[data-theme="dark"] .resource-missing,
+html[data-theme="dark"] .assignment-note {
+  color: #f1c76e;
+  border-color: #705b2a;
+  background: rgba(100, 72, 20, 0.22);
+}
+html[data-theme="dark"] .ok-notice,
+html[data-theme="dark"] .kom-comparison .ok,
+html[data-theme="dark"] .planning-status.covered {
+  color: #cfeaa9;
+  border-color: #465f35;
+  background: rgba(132, 189, 0, 0.10);
+}
+html[data-theme="dark"] .danger-button,
+html[data-theme="dark"] .danger-link {
+  color: #ff9b9b !important;
+  border-color: rgba(255, 95, 95, 0.42) !important;
+  background: rgba(120, 28, 28, 0.18) !important;
+}
+html[data-theme="dark"] input,
+html[data-theme="dark"] select,
+html[data-theme="dark"] textarea {
+  color: var(--ref-ink);
+  border-color: var(--ref-line-strong);
+  background: var(--ref-field);
+}
+html[data-theme="dark"] input[readonly],
+html[data-theme="dark"] input:disabled,
+html[data-theme="dark"] select:disabled {
+  color: var(--ref-muted);
+  background: rgba(10, 14, 17, 0.82);
+}
+html[data-theme="dark"] input::placeholder,
+html[data-theme="dark"] textarea::placeholder {
+  color: var(--ref-dim);
+  opacity: 1;
+}
+html[data-theme="dark"] table,
+html[data-theme="dark"] th,
+html[data-theme="dark"] td {
+  color: inherit;
+}
+html[data-theme="dark"] option {
+  color: var(--ref-ink);
+  background: #151b20;
+}
+
+html[data-theme="light"] .control-order-delete {
+  color: #963f31;
+  border-color: #d6a79b;
+  background: #fff7f4;
+}
+
+@media (max-width: 680px) {
+  .control-order-card {
+    grid-template-columns: 1fr;
+  }
+  .control-order-delete {
+    min-height: 38px;
+  }
+}

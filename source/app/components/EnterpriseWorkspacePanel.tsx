@@ -1,8 +1,10 @@
 "use client";
 
-import { ChangeEvent, useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useRef, useState } from "react";
 import * as XLSX from "xlsx";
 import parametricSource from "../data/parametricModels.json";
+import elementCatalogSource from "../data/elementCatalog.json";
+import { getCalculationCoverage, normalizeElementFamily } from "../lib/calculationCoverage";
 import { calculateBreakerDiscountPrices } from "../lib/breakerPricing";
 import { buildBreakerIndexes, BreakerCatalogRow, isBreakerText, matchBreaker, matchBreakerStock, normalizeBreakerArticle, normalizeBreakerName } from "../lib/breakerMatching";
 import { calculateKomMaterials, findKomEnvelope, KomConnection, kom250Drawing, kom250Fasteners, kom250SheetParts } from "../lib/komSelection";
@@ -89,6 +91,7 @@ export default function EnterpriseWorkspacePanel({ mode, orders, stock, onOpenCo
   const [breakerPage, setBreakerPage] = useState(1);
   const [breakers, setBreakers] = useState<BreakerCatalogRow[]>([]);
   const [breakerCatalogError, setBreakerCatalogError] = useState("");
+  const lastAuditSignature = useRef("");
 
   async function load() {
     try {
@@ -234,19 +237,31 @@ export default function EnterpriseWorkspacePanel({ mode, orders, stock, onOpenCo
 
   const priority = useMemo(() => {
     const types = new Map<string, { key: string; type: string; article: string; quantity: number; examples: string[] }>();
-    const knownTypes = new Set((parametricSource as (string | number)[][]).map((row) => text(row[0])));
+    const catalogTypes = [...new Set((elementCatalogSource as { code?: string }[]).map((row) => text(row.code)).filter(Boolean))];
+    const modelTypes = [...new Set((parametricSource as (string | number)[][]).map((row) => text(row[0])).filter(Boolean))];
+    const knownTypes = [...new Set([...catalogTypes, ...modelTypes])];
     for (const order of orders) for (const row of order.rows) {
-      const haystack = `${row.article} ${row.item} ${row.marking} ${row.drawingNumber}`.toUpperCase();
-      const type = [...knownTypes].find((candidate) => new RegExp(`(^|[^A-Z])${candidate}([^A-Z]|$)`).test(haystack)) ?? "Не распознано";
+      const haystack = `${row.article} ${row.item} ${row.marking} ${row.drawingNumber}`;
+      const type = normalizeElementFamily(haystack, knownTypes);
       const key = `${type}|${row.article || row.item}`; const current = types.get(key) ?? { key, type, article: row.article || row.item, quantity: 0, examples: [] };
       current.quantity += row.quantity || 1; if (current.examples.length < 2) current.examples.push(`№ ${order.number}`);
       types.set(key, current);
     }
     return [...types.values()].map((row) => {
-      const models = [...new Set((parametricSource as (string | number)[][]).filter((source) => text(source[0]) === row.type).map((source) => text(source[5])))];
-      return { ...row, models };
+      const models = [...new Set((parametricSource as (string | number)[][]).filter((source) => text(source[0]).toUpperCase() === row.type.toUpperCase()).map((source) => text(source[5])))];
+      return { ...row, models, coverage: getCalculationCoverage(row.type) };
     }).sort((a, b) => b.quantity - a.quantity);
   }, [orders]);
+
+  const calculationGaps = useMemo(() => priority.filter((row) => row.coverage.status !== "calculated"), [priority]);
+  useEffect(() => {
+    if (mode !== "models" || !calculationGaps.length) return;
+    const payload = calculationGaps.map((row) => ({ family: row.type, article: row.article, quantity: row.quantity, status: row.coverage.status, required: row.coverage.required }));
+    const signature = JSON.stringify(payload);
+    if (lastAuditSignature.current === signature) return;
+    lastAuditSignature.current = signature;
+    void save("calculation_gap_snapshot", "__KLM__", `audit|${Date.now()}`, { capturedAt: new Date().toISOString(), mode: "read-only", items: payload });
+  }, [mode, calculationGaps]);
 
   const comp = productionCompensators.find((row) => row[0] === compCurrent) ?? productionCompensators.reduce((best, row) => Math.abs(row[0] - compCurrent) < Math.abs(best[0] - compCurrent) ? row : best);
   const komDims = findKomEnvelope(kom.current, kom.connection);
@@ -506,8 +521,9 @@ export default function EnterpriseWorkspacePanel({ mode, orders, stock, onOpenCo
     <section className="panel"><div className="panel-title"><div><span>05</span><h2>Ресурсная спецификация элемента</h2></div><small>состав / стыки / метры / артикулы</small></div><div className="form-grid"><label>Проект<select value={activeProject} onChange={(e)=>setActiveProject(e.target.value)}><option value="">Выберите</option>{projects.map((row)=><option key={row.id}>{row.entityKey}</option>)}</select></label><label>Заказ<input value={resource.order} onChange={(e)=>setResource({...resource,order:e.target.value})}/></label><label>Элемент<input value={resource.element} onChange={(e)=>setResource({...resource,element:e.target.value})}/></label><label>Тип позиции<select value={resource.kind} onChange={(e)=>setResource({...resource,kind:e.target.value})}><option>Состав элемента</option><option>Комплект стыка</option></select></label><label>Номенклатура<input value={resource.name} onChange={(e)=>setResource({...resource,name:e.target.value})}/></label><label>Артикул 1С<input value={resource.article} onChange={(e)=>setResource({...resource,article:e.target.value})}/></label><label>Количество<input type="number" value={resource.quantity} onChange={(e)=>setResource({...resource,quantity:e.target.value})}/></label><label>Единица<select value={resource.unit} onChange={(e)=>setResource({...resource,unit:e.target.value})}><option>шт</option><option>кг</option><option>м</option><option>компл.</option></select></label><label>Метры<input type="number" value={resource.meters} onChange={(e)=>setResource({...resource,meters:e.target.value})}/></label></div><button className="primary" onClick={()=>save("resource_spec",activeProject,`${resource.order}|${resource.element}|${resource.kind}|${resource.article}`,resource)} disabled={!activeProject||!resource.element}>Добавить позицию</button><div className="record-list">{records.filter((row)=>row.category==="resource_spec"&&(!activeProject||row.projectKey===activeProject)).map((row)=><div key={row.id}><b>{text(row.payload.element)} · {text(row.payload.kind)}</b><span>{text(row.payload.article)||"артикул не задан"} · {text(row.payload.name)}</span><small>{text(row.payload.quantity)} {text(row.payload.unit)}{row.payload.meters?` · ${text(row.payload.meters)} м`:""} · заказ {text(row.payload.order)}</small></div>)}</div></section>
   </div>;
 
-  if (mode === "models") return <div className="enterprise-workspace">{status}<div className="object-kpis"><div><span>Строк моделей</span><strong>718</strong><small>{(parametricSource as unknown[]).length} уникальных сочетаний · .001–.010</small></div><div><span>Позиций заказов</span><strong>{priority.length}</strong><small>группы артикулов/типов</small></div><div><span>С моделью</span><strong>{priority.filter((row) => row.models.length).length}</strong><small>наличие подтверждено базой</small></div><div><span>Без модели</span><strong>{priority.filter((row) => !row.models.length).length}</strong><small>очередь параметризации</small></div></div>
-    <section className="panel"><div className="panel-title"><div><span>01</span><h2>Очередь параметрических моделей</h2></div><small>приоритет = количество во всех актуальных заказах</small></div><div className="table-wrap"><table><thead><tr><th>Приоритет</th><th>Тип / артикул</th><th>Количество</th><th>Заказы</th><th>Параметрическая модель</th><th>Готовность</th></tr></thead><tbody>{priority.map((row, index) => <tr key={row.key}><td><strong>#{index+1}</strong></td><td><b>{row.type}</b><small>{row.article}</small></td><td><strong>{row.quantity}</strong></td><td>{row.examples.join(", ")}</td><td>{row.models.length ? `есть: ${row.models.join(", ")}` : "нет отметки"}</td><td><span className={row.models.length ? "planning-status available" : "planning-status no-stock"}>{row.models.length ? "Есть в базе" : "В очередь"}</span></td></tr>)}</tbody></table></div>{!priority.length && <div className="empty">Загрузите актуальные заказы — очередь сформируется автоматически.</div>}</section>
+  if (mode === "models") return <div className="enterprise-workspace">{status}<div className="object-kpis"><div><span>Строк моделей</span><strong>718</strong><small>{(parametricSource as unknown[]).length} уникальных сочетаний · .001–.010</small></div><div><span>Позиций заказов</span><strong>{priority.length}</strong><small>группы артикулов/типов</small></div><div><span>Расчёт закрыт</span><strong>{priority.filter((row) => row.coverage.status === "calculated").length}</strong><small>по действующим утверждённым правилам</small></div><div><span>Требуют данных</span><strong>{calculationGaps.length}</strong><small>агент только сверяет и анализирует</small></div></div>
+    <section className="panel calculation-audit-panel"><div className="panel-title"><div><span>01</span><h2>Агент сверки расчёта</h2></div><small>только анализ · правила задаёт владелец</small></div><p>Панель автоматически сверяет актуальные заказы с действующими расчётными правилами. Она не создаёт формулы и не подменяет отсутствующие данные предположениями. Изменения очереди сохраняются в истории проекта как снимки аудита.</p><div className="table-wrap"><table><thead><tr><th>Элемент</th><th>Количество</th><th>Статус расчёта</th><th>Почему</th><th>Что необходимо предоставить</th></tr></thead><tbody>{calculationGaps.map((row) => <tr key={`gap-${row.key}`}><td><b>{row.type}</b><small>{row.article}</small><small>{row.examples.join(", ")}</small></td><td><strong>{row.quantity}</strong></td><td><span className={`planning-status ${row.coverage.status === "partial" ? "mapping" : "no-stock"}`}>{row.coverage.status === "partial" ? "Частично" : "Не рассчитан"}</span></td><td>{row.coverage.reason}</td><td><ol className="audit-requirements">{row.coverage.required.map((item) => <li key={item}>{item}</li>)}</ol></td></tr>)}</tbody></table></div>{!calculationGaps.length && <div className="empty">По актуальным заказам нет элементов без утверждённого расчётного правила.</div>}</section>
+    <section className="panel"><div className="panel-title"><div><span>02</span><h2>Очередь параметрических моделей</h2></div><small>наличие модели не означает автоматически готовый расчёт себестоимости</small></div><div className="table-wrap"><table><thead><tr><th>Приоритет</th><th>Тип / артикул</th><th>Количество</th><th>Заказы</th><th>Параметрическая модель</th><th>Расчёт</th></tr></thead><tbody>{priority.map((row, index) => <tr key={row.key}><td><strong>#{index+1}</strong></td><td><b>{row.type}</b><small>{row.article}</small></td><td><strong>{row.quantity}</strong></td><td>{row.examples.join(", ")}</td><td>{row.models.length ? `есть: ${row.models.join(", ")}` : "нет отметки"}</td><td><span className={`planning-status ${row.coverage.status === "calculated" ? "available" : row.coverage.status === "partial" ? "mapping" : "no-stock"}`}>{row.coverage.status === "calculated" ? "Рассчитывается" : row.coverage.status === "partial" ? "Частично" : "Нужны данные"}</span></td></tr>)}</tbody></table></div>{!priority.length && <div className="empty">Загрузите актуальные заказы — очередь сформируется автоматически.</div>}</section>
     <section className="notice"><b>Критерий готовности модели</b><span>«Проверочный пример» — это реальная секция, для которой результат модели сравнен с выпущенным чертежом/спецификацией. «Диапазоны параметров» — подтверждённые минимальные и максимальные значения длины, тока, количества проводников, IP и других изменяемых полей. Пока оба пункта не подтверждены, модель отмечается как «есть в базе», но не как готовая к автоматическому выпуску.</span></section>
   </div>;
 

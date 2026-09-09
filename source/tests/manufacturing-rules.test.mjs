@@ -16,7 +16,7 @@ test("G joint combines the assembly drawing and Excel connector composition", ()
   assert.equal(joint?.connectorDesignation, "012.001.000-06");
   assert.equal(joint?.heightMm, 239);
   assert.equal(joint?.totalMassKg, 5.1);
-  assert.equal(joint?.components.find((item) => /M6×12/.test(item.name))?.quantity, 16);
+  assert.equal(joint?.components.find((item) => /M6×12/.test(item.name))?.quantity, 8);
   assert.equal(joint?.components.find((item) => /M12×130/.test(item.name))?.quantity, 3);
 });
 

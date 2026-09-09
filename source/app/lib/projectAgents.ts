@@ -62,8 +62,7 @@ export function detectIpExecution(...values: unknown[]): IpExecution {
 }
 
 export function executionBlockReason(execution: IpExecution) {
-  if (execution === "IP55") return "";
-  if (execution === "IP68") return "IP68 заблокирован: ресурсные спецификации и правила расчёта не предоставлены";
+  if (execution === "IP55" || execution === "IP68") return "";
   if (execution === "conflict") return "Конфликт IP55/IP68: расчёт запрещён до уточнения исполнения";
   return "Исполнение IP не распознано: запрещено автоматически применять правила IP55";
 }

@@ -309,13 +309,24 @@ export default function ProjectCompositionPanel({ orders, setOrders, onCalculate
           <div className="example-orders">
             {orders.map((order) => {
               const orderData = orderMetrics(order);
-              return <button type="button" className="example-order linked" key={order.id} onClick={() => onOpenCurrentOrder?.(order.number)}>
-                <div><strong>№ {order.number}</strong><small>от {order.date}</small></div>
-                <span className={orderData.missing ? "order-state work" : "order-state ready"}>{workflowLabel(order)}</span>
-                <i><b style={{ width: `${orderData.progress}%` }} /></i>
-                <footer><span>{orderData.complete} из {order.rows.length} чертежей</span><strong>{orderData.progress}%</strong></footer>
-                <span className="control-order-link">Открыть в текущих заказах →</span>
-              </button>;
+              return <div className="control-order-card" key={order.id}>
+                <button type="button" className="example-order linked" onClick={() => onOpenCurrentOrder?.(order.number)}>
+                  <div><strong>№ {order.number}</strong><small>от {order.date}</small></div>
+                  <span className={orderData.missing ? "order-state work" : "order-state ready"}>{workflowLabel(order)}</span>
+                  <i><b style={{ width: `${orderData.progress}%` }} /></i>
+                  <footer><span>{orderData.complete} из {order.rows.length} чертежей</span><strong>{orderData.progress}%</strong></footer>
+                  <span className="control-order-link">Открыть в текущих заказах →</span>
+                </button>
+                <button
+                  type="button"
+                  className="control-order-delete"
+                  aria-label={`Удалить заказ № ${order.number}`}
+                  title="Удалить контрольный заказ"
+                  onClick={() => void deleteOrder(order)}
+                >
+                  Удалить
+                </button>
+              </div>;
             })}
           </div>
         </section>}

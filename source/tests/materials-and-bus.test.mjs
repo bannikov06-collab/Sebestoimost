@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { calculateBusStock } from "../app/lib/busStock.ts";
 import { calculateElement } from "../app/lib/calculation.ts";
-import { calculateStockLengthMetrics, matchStock } from "../app/lib/materialPlanning.ts";
+import { calculateSheetPieceConversion, calculateStockLengthMetrics, matchStock } from "../app/lib/materialPlanning.ts";
 import { CONFIRMED_M6X16_DIN6921_CODE, findM6x16Din6921 } from "../app/lib/stockRules.ts";
 
 test("M6x16 DIN 6921 is matched to the confirmed 1C stock item", () => {
@@ -163,4 +163,29 @@ test("profiles and busbars are converted to kilograms and 3000 mm pieces", () =>
   });
   assert.equal(shapedBusbar.massKg, 4.74);
   assert.equal(shapedBusbar.pieces3m, 2);
+});
+
+
+test("aluminium sheets are converted from kg to whole sheets using known dimensions", () => {
+  const conversion = calculateSheetPieceConversion({
+    name: "Ц0000070687 · Лист алюминий АМг3 2,0×1200×3000",
+    unit: "кг",
+    qty: 20,
+  });
+  assert.ok(conversion);
+  assert.ok(Math.abs(conversion.massPerSheetKg - 19.512) < 1e-9);
+  assert.equal(conversion.pieces, 2);
+  assert.equal(conversion.label, "2×1200×3000 мм");
+});
+
+test("sheet stock matching allows kg demand to be ordered in pieces", () => {
+  const result = matchStock(
+    { name: "Ц0000070687 · Лист алюминий АМг3 2,0×1200×3000", unit: "кг", qty: 20 },
+    [{ name: "Лист алюминиевый АМг3 2,0×1200×3000", unit: "кг", code: "Ц0000070687", article: "", balance: 100 }],
+  );
+  assert.equal(result.stock?.code, "Ц0000070687");
+  assert.equal(result.convertedUnit, "шт");
+  assert.equal(result.roundDemandUp, true);
+  assert.ok(Math.abs(result.factor - 1 / 19.512) < 1e-12);
+  assert.ok(Math.abs(result.priceFactor - 19.512) < 1e-9);
 });

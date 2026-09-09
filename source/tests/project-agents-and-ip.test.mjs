@@ -17,9 +17,9 @@ test("explicit 55 article is classified as IP55", () => {
   assert.equal(executionBlockReason("IP55"), "");
 });
 
-test("explicit 68 article is classified as IP68 and blocked", () => {
+test("explicit 68 article is classified as IP68 and enabled", () => {
   assert.equal(detectIpExecution("KLM-S-25-Al-68-4-V3-FE"), "IP68");
-  assert.match(executionBlockReason("IP68"), /заблокирован/i);
+  assert.equal(executionBlockReason("IP68"), "");
 });
 
 test("conflicting IP55 and IP68 markings are blocked", () => {
@@ -32,11 +32,11 @@ test("unknown execution never falls back to IP55", () => {
   assert.match(executionBlockReason("unknown"), /не распознано/i);
 });
 
-test("IP68 makes the read-only project audit blocked", () => {
+test("complete IP68 row passes the read-only project audit", () => {
   const report = runReadOnlyProjectAgents([{ ...completeRow, article: "KLM-S-20-Al-68-4-V3-FE" }], {}, "2026-08-24T00:00:00.000Z");
   assert.equal(report.mode, "read-only");
-  assert.equal(report.status, "blocked");
-  assert.ok(report.summary.blockers > 0);
+  assert.equal(report.status, "passed");
+  assert.equal(report.summary.blockers, 0);
 });
 
 test("complete explicit IP55 row passes without mutation", () => {
