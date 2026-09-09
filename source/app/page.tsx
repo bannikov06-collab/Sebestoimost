@@ -57,6 +57,7 @@ import { calculateCmlStandard, CML_STANDARD_FE_MM, CML_STANDARD_OVERALL_MM, CML_
 import { calculateQueueDates, estimateProductionHours } from "./lib/projectPlanning";
 import type { DemandLine, AvailabilityLine } from "./lib/reservations";
 import { calculateSidewallSheetMassKg, selectSidewallResource } from "./lib/sidewallRules";
+import { calculateIp68Compound, isIp68CompoundFamily, isIp68SupportedCurrent, IP68_COMPOUND, selectIp68SidewallResource } from "./lib/ip68Rules";
 
 type Item = {
   name: string;
@@ -814,9 +815,11 @@ function calculateElement(
   element: NetworkElement,
   laborRate: number,
   catalog: ElementCatalogItem,
+  protectionMode: "IP55" | "IP68" = "IP55",
 ) {
   const code = resolveFormulaCode(catalog);
   if (!code) return null;
+  if (protectionMode === "IP68" && (!isIp68CompoundFamily(code) || !isIp68SupportedCurrent(element.current))) return null;
   if (code === "ATT" || code === "CML") return calculateSpecializedElement(element, laborRate, catalog, code);
   const cfg = getCalculationBusConfig(element.current, element.poles);
   const developedMm = element.lengths
@@ -832,6 +835,10 @@ function calculateElement(
     weldedVertical: element.weldedVertical,
   });
   if (!geometry || !geometry.genericResourceCalculationAllowed) return null;
+  const ip68Compound = protectionMode === "IP68"
+    ? calculateIp68Compound({ family: code, currentA: element.current, poles: element.poles, developedMm })
+    : null;
+  if (protectionMode === "IP68" && !ip68Compound) return null;
   const developedM = geometry.developedM;
   const barPerimeterM = geometry.barPerimeterM;
   const petBlankWidthM = geometry.petBlankWidthM;
@@ -863,17 +870,35 @@ function calculateElement(
   const petInsulatedM = geometry.petInsulatedLengthM;
   const effectiveWelding = rule.verticalAngle && (element.weldedVertical || isCp);
   const tapeFactor = geometry.tapeFactor;
-  const sidewallResource = selectSidewallResource({
-    family: code,
-    currentA: element.current,
-    busHeightMm: cfg.height,
-    busThicknessMm: cfg.thickness,
-    packagesPerPhase: cfg.count,
-    familyRequiresSheet: rule.sheetSidewall,
-  });
+  const sidewallResource = protectionMode === "IP68"
+    ? selectIp68SidewallResource({
+        family: code,
+        currentA: element.current,
+        busHeightMm: cfg.height,
+        busThicknessMm: cfg.thickness,
+        packagesPerPhase: cfg.count,
+      })
+    : selectSidewallResource({
+        family: code,
+        currentA: element.current,
+        busHeightMm: cfg.height,
+        busThicknessMm: cfg.thickness,
+        packagesPerPhase: cfg.count,
+        familyRequiresSheet: rule.sheetSidewall,
+      });
   const sidewallMassKg = calculateSidewallSheetMassKg(sidewallResource, developedM);
   const peEar = calculatePeEarBlank(element.current);
   const items: Item[] = [
+    ...(ip68Compound ? [{
+      name: `${IP68_COMPOUND.code} · ${IP68_COMPOUND.designation} · компаунд IP68 A:B=${IP68_COMPOUND.ratioA}:${IP68_COMPOUND.ratioB}`,
+      unit: "кг",
+      qty: ip68Compound.massKg,
+      price: IP68_COMPOUND.pricePerKg,
+      total: 0,
+      group: "Компаунд IP68",
+      massKg: ip68Compound.massKg,
+      metricBasis: `${ip68Compound.basis}; объём ${ip68Compound.volumeL.toFixed(6)} л; масса ${ip68Compound.massKg.toFixed(3)} кг; дозирование ${ip68Compound.dispensingSeconds.toFixed(1)} с`,
+    }] : []),
     {
       name: `${busCodeByHeight[cfg.height] ?? "Код 1С не подтверждён"} · Шина АД0 ${cfg.thickness}×${cfg.height}×3000 (R=3), ${cfg.count} шт./фазу${isCd && element.current === 1000 ? " · масса 4,50 кг по КД CD" : isCp && element.current === 1000 ? " · масса 4,74 кг по КД CP" : ""}`,
       unit: "кг",
@@ -1072,6 +1097,7 @@ export default function Home() {
   const [expandedElements, setExpandedElements] = useState<number[]>([]);
   const [focusedOrderNumber, setFocusedOrderNumber] = useState("");
   const [laborRate, setLaborRate] = useState(20);
+  const [protectionMode, setProtectionMode] = useState<"IP55" | "IP68">("IP55");
   const [technologyLossPct, setTechnologyLossPct] = useState(1);
   const [vatPct, setVatPct] = useState(20);
   const [markupPct, setMarkupPct] = useState(0);
@@ -1441,7 +1467,7 @@ export default function Home() {
         else elementsByKey.set(key, { ...element, lengths: [...element.lengths], dimensionSources: [...element.dimensionSources], dimensionOriginals: [...element.dimensionOriginals] });
       }
       for (const joint of converted.jointRows ?? []) {
-        const key = `${joint.article}|${joint.currentA}|${joint.poles}`.toUpperCase();
+        const key = `${joint.article}|${joint.currentA}|${joint.poles}|${joint.ip}`.toUpperCase();
         const existing = jointRowsByKey.get(key);
         if (existing) existing.quantity += joint.quantity;
         else jointRowsByKey.set(key, { ...joint });
@@ -1532,7 +1558,7 @@ export default function Home() {
       const totalCost = converted.elements.reduce((sum, element) => {
         const catalog = elementCatalogById.get(element.typeId);
         if (!catalog) return sum;
-        const calculated = calculateElement(element, laborRate, catalog);
+        const calculated = calculateElement(element, laborRate, catalog, protectionMode);
         return sum + (calculated?.totalCost ?? 0) * element.quantity;
       }, 0);
       if (!(totalCost > 0)) {
@@ -1583,7 +1609,7 @@ export default function Home() {
     for (const element of converted.elements) {
       const catalog = elementCatalogById.get(element.typeId);
       if (!catalog) continue;
-      const calculated = calculateElement(element, laborRate, catalog);
+      const calculated = calculateElement(element, laborRate, catalog, protectionMode);
       for (const item of calculated?.items ?? []) {
         const key = `${item.group}|${item.name}|${item.unit}|${item.price}`;
         const previous = itemMap.get(key);
@@ -1635,7 +1661,7 @@ export default function Home() {
           ? sectionInfo[code]
           : { name: catalog.name, dims: 3, step: 50, defaults: {} },
         rule: resolveSectionRule(catalog),
-        calc: calculateElement(e, laborRate, catalog),
+        calc: calculateElement(e, laborRate, catalog, protectionMode),
       };
     });
     const itemMap = new Map<string, Item>();
@@ -1716,7 +1742,7 @@ export default function Home() {
       busStock,
       busStockPieces: busStock.reduce((sum, row) => sum + row.stockPieces3m, 0),
     };
-  }, [elements, laborRate]);
+  }, [elements, laborRate, protectionMode]);
 
   const commercialCalc = useMemo(() => {
     const technologyLoss = calc.materials * Math.max(0, technologyLossPct) / 100;
@@ -2092,13 +2118,13 @@ export default function Home() {
       const converted=orderToSelectedNominal(order);
       for (const element of converted.elements) {
         const catalog=elementCatalogById.get(element.typeId); if(!catalog) continue;
-        const calculated=calculateElement(element,laborRate,catalog);
+        const calculated=calculateElement(element,laborRate,catalog,protectionMode);
         for(const item of calculated?.items??[]){const key=`${item.group}|${item.name}|${item.unit}|${item.price}`;const old=itemMap.get(key);itemMap.set(key,{...item,qty:(old?.qty??0)+item.qty*element.quantity,total:(old?.total??0)+item.total*element.quantity,stockLengthM:item.stockLengthM===undefined?undefined:(old?.stockLengthM??0)+item.stockLengthM*element.quantity,massKg:item.massKg===undefined?undefined:(old?.massKg??0)+item.massKg*element.quantity});}
       }
       for(const joint of converted.jointRows??[]){for(const line of calculateJointMaterialLines(joint)){const key=`${line.group}|${line.name}|${line.unit}|0`;const old=itemMap.get(key);itemMap.set(key,{name:line.name,unit:line.unit,qty:(old?.qty??0)+line.qty,price:0,total:0,group:line.group});}}
     }
     return [...itemMap.values()];
-  },[selectedProductionProjects,orders,calc.items,laborRate,nominalScenarioStep]);
+  },[selectedProductionProjects,orders,calc.items,laborRate,nominalScenarioStep,protectionMode]);
   const procurementComparisonComponents = useMemo<ProcurementComponentRow[]>(() => {
     const rows: ProcurementComponentRow[] = [];
     for (const order of orders.filter((row) => selectedProductionProjects.includes(`${row.projectName || "Без проекта"}|${row.number}`))) {
@@ -2107,7 +2133,7 @@ export default function Home() {
       for (const element of converted.elements) {
         const catalog = elementCatalogById.get(element.typeId);
         const code = resolveFormulaCode(catalog);
-        rows.push({ orderLabel, component: catalog?.name ?? `Тип элемента ${element.typeId}`, article: code ? articleFor(element.current, code, element.poles) : catalog?.code ?? "", nominalA: element.current, poles: `${element.poles}P`, quantity: element.quantity, kind: "Секция", calculated: Boolean(catalog && calculateElement(element, laborRate, catalog)) });
+        rows.push({ orderLabel, component: catalog?.name ?? `Тип элемента ${element.typeId}`, article: code ? articleFor(element.current, code, element.poles) : catalog?.code ?? "", nominalA: element.current, poles: `${element.poles}P`, quantity: element.quantity, kind: "Секция", calculated: Boolean(catalog && calculateElement(element, laborRate, catalog, protectionMode)) });
       }
       for (const joint of converted.jointRows ?? []) rows.push({ orderLabel, component: joint.item || "Стыковочный элемент G", article: joint.article || "G", nominalA: joint.currentA, poles: `${joint.poles}P`, quantity: joint.quantity, kind: "Стык", calculated: calculateJointMaterialLines(joint).length > 0 });
       for (const sourceRow of order.rows) {
@@ -2118,12 +2144,12 @@ export default function Home() {
       }
     }
     return rows;
-  }, [orders, selectedProductionProjects, nominalScenarioStep, laborRate]);
+  }, [orders, selectedProductionProjects, nominalScenarioStep, laborRate, protectionMode]);
 
   const reservationDemands = useMemo<DemandLine[]>(() => {
     const rows:DemandLine[]=[];
-    for(const order of orders){const key=`${order.projectName||'Без проекта'}|${order.number}`;const obj=objects.find(o=>o.orderNumber===order.number);const converted=selectedProductionProjects.includes(key)?orderToSelectedNominal(order):orderToElements(order);const map=new Map<string,{name:string;unit:string;qty:number}>();for(const element of converted.elements){const catalog=elementCatalogById.get(element.typeId);if(!catalog)continue;const calculated=calculateElement(element,laborRate,catalog);for(const item of calculated?.items??[]){const code=(item.name.match(/^([^·]+)·/)?.[1]??'').trim();const k=code||item.name;const old=map.get(k);map.set(k,{name:item.name,unit:item.unit,qty:(old?.qty??0)+item.qty*element.quantity});}}for(const joint of converted.jointRows??[]){for(const item of calculateJointMaterialLines(joint)){const code=item.code||item.designation||item.name;const old=map.get(code);map.set(code,{name:item.name,unit:item.unit,qty:(old?.qty??0)+item.qty});}}for(const [code,m] of map)rows.push({projectKey:key,code,name:m.name,unit:m.unit,qty:m.qty,priority:obj?.priorityOrder??null});}return rows;
-  },[orders,objects,laborRate,selectedProductionProjects,nominalScenarioStep]);
+    for(const order of orders){const key=`${order.projectName||'Без проекта'}|${order.number}`;const obj=objects.find(o=>o.orderNumber===order.number);const converted=selectedProductionProjects.includes(key)?orderToSelectedNominal(order):orderToElements(order);const map=new Map<string,{name:string;unit:string;qty:number}>();for(const element of converted.elements){const catalog=elementCatalogById.get(element.typeId);if(!catalog)continue;const calculated=calculateElement(element,laborRate,catalog,protectionMode);for(const item of calculated?.items??[]){const code=(item.name.match(/^([^·]+)·/)?.[1]??'').trim();const k=code||item.name;const old=map.get(k);map.set(k,{name:item.name,unit:item.unit,qty:(old?.qty??0)+item.qty*element.quantity});}}for(const joint of converted.jointRows??[]){for(const item of calculateJointMaterialLines(joint)){const code=item.code||item.designation||item.name;const old=map.get(code);map.set(code,{name:item.name,unit:item.unit,qty:(old?.qty??0)+item.qty});}}for(const [code,m] of map)rows.push({projectKey:key,code,name:m.name,unit:m.unit,qty:m.qty,priority:obj?.priorityOrder??null});}return rows;
+  },[orders,objects,laborRate,selectedProductionProjects,nominalScenarioStep,protectionMode]);
   const reservationAvailability = useMemo<AvailabilityLine[]>(()=>stock.map(row=>({code:row.code,name:row.name,unit:row.unit,stock:row.balance,inTransit:0,paid:0,supplierProduction:0})),[stock]);
 
   return (
@@ -2965,6 +2991,14 @@ export default function Home() {
                     onChange={(e) => { setProjectName(e.target.value); setControlProjectKey(e.target.value); setControlDocumentKey("manual"); setControlDocumentKind("manual"); }}
                   />
                 </label>
+                <label>
+                  Степень защиты
+                  <select value={protectionMode} onChange={(e) => setProtectionMode(e.target.value as "IP55" | "IP68")}>
+                    <option value="IP55">IP55</option>
+                    <option value="IP68">IP68</option>
+                  </select>
+                  <small>{protectionMode === "IP68" ? "IP68: компаунд VeraBond, боковины из листа по правилу +33 мм; PE в 5P без ПЭТ и скотча." : "IP55: действующие утверждённые правила расчёта."}</small>
+                </label>
                 <div className="multi-spec-calculator">
                   <div className="multi-spec-head"><div><strong>Спецификации для общего расчёта</strong><small>Выберите одну или несколько. Одинаковые элементы по артикулу, проводности и размерам будут объединены в одну строку.</small></div><button type="button" onClick={() => setSelectedCalculatorSpecifications(selectedCalculatorSpecifications.length === calculatorSpecificationOptions.length ? [] : calculatorSpecificationOptions.map((option) => option.key))}>{selectedCalculatorSpecifications.length === calculatorSpecificationOptions.length && calculatorSpecificationOptions.length ? "Снять все" : "Выбрать все"}</button></div>
                   {calculatorSpecificationOptions.length ? <div className="multi-spec-list">{calculatorSpecificationOptions.map((option) => <label key={option.key}><input type="checkbox" checked={selectedCalculatorSpecifications.includes(option.key)} onChange={(event) => setSelectedCalculatorSpecifications((current) => event.target.checked ? [...current, option.key] : current.filter((key) => key !== option.key))} /><span>{option.label}</span></label>)}</div> : <p className="muted">Сначала загрузите заказы или предварительные спецификации.</p>}
@@ -2998,7 +3032,7 @@ export default function Home() {
                 {jointCalc.rows.length > 0 && (
                   <section className="joint-demand-block">
                     <div className="section-heading"><div><span className="eyebrow">Отдельный блок · только по спецификации</span><h2>Стыковочные элементы G</h2></div><b>{number.format(jointCalc.rows.reduce((s,r)=>s+r.quantity,0))} компл.</b></div>
-                    <p className="muted">Стыки не входят в состав FE, CD, CP, ZD, ZDP или других секций. Для каждого стыка принудительно L1 = 0, L2 = 0, L3 = 0. Состав раскрыт только по КД 012.001.000СБ / G.001.000СБ. Gasketing рассчитан по геометрии 01.312.012СБ.</p>
+                    <p className="muted">Стыки не входят в состав FE, CD, CP, ZD, ZDP или других секций. Для каждого стыка принудительно L1 = 0, L2 = 0, L3 = 0. IP55: КД 012.001.000СБ / G.001.000СБ с Gasketing по 01.312.012СБ. IP68 5P: отдельный состав по КД 012.007.000СБ без смешивания с IP55.</p>
                     <div className="joint-card-list">
                       {jointCalc.rows.map((joint) => {
                         const expanded = expandedJointIds.includes(joint.id);
@@ -3017,6 +3051,7 @@ export default function Home() {
                             <label>Тип элемента<input value="Стыковочный элемент G" readOnly /></label>
                             <label>Номинальный ток<input value={joint.currentA ? `${joint.currentA} А` : "Не определён"} readOnly /></label>
                             <label>Проводность<input value={`${joint.poles}P`} readOnly /></label>
+                            <label>Степень защиты<input value={joint.ip} readOnly /></label>
                             <label>Артикул<input value={joint.article || "—"} readOnly /></label>
                             <label>Количество<input value={`${number.format(joint.quantity)} компл.`} readOnly /></label>
                             <label>L1 / L2 / L3<input value="0 / 0 / 0 мм" readOnly /></label>

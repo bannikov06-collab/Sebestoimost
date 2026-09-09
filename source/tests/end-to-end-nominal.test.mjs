@@ -13,7 +13,7 @@ test("selected nominal is applied to selected production orders", () => {
 
 test("material requirements depend on nominal scenario", () => {
   assert.match(page, /combinedProjectItems/);
-  assert.match(page, /nominalScenarioStep\]\)/);
+  assert.match(page, /nominalScenarioStep,protectionMode\]\)/);
   assert.match(page, /calculationScenarioLabel/);
 });
 

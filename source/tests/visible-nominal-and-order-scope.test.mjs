@@ -17,7 +17,7 @@ test("nominal selector is a top-level calculator window before control", () => {
 test("nominal scenario recalculates from a stable source current", () => {
   assert.match(page, /nominalBaseCurrents/);
   assert.match(page, /getApprovedDimensions\(code, current, row\.poles\)/);
-  assert.match(page, /calculateElement\(e, laborRate, catalog\)/);
+  assert.match(page, /calculateElement\(e, laborRate, catalog, protectionMode\)/);
 });
 
 test("multi-order exports enumerate every selected order", () => {

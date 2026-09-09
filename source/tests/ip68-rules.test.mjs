@@ -63,8 +63,9 @@ test("IP68 5P joint uses its own 012.007 BOM and six insulators", () => {
   assert.ok(lines.every((line) => !line.name.includes("VeraBond")));
 });
 
-test("calculator exposes IP68 and insulates PE in IP68 without changing the IP55 rule", () => {
+test("calculator exposes IP68 while preserving the approved 5P PE insulation rule", () => {
   const page = fs.readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  assert.match(page, /const insulatedBarsTotal = isIp68 \? barsTotal : 4 \* cfg\.count/);
+  assert.match(page, /<option value="IP68">IP68<\/option>/);
+  assert.match(page, /const insulatedBarsTotal = 4 \* cfg\.count/);
   assert.match(page, /Шина PE в 5P не изолируется/);
 });

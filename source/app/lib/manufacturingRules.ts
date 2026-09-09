@@ -40,6 +40,7 @@ export type JointDemandRow = {
   quantity: number;
   currentA: number;
   poles: 4 | 5;
+  ip: "IP55" | "IP68";
   busbarThicknessMm: 6 | 7 | null;
   source: "production" | "preliminary" | "manual";
   dimensionsMm: readonly [0, 0, 0];
@@ -192,13 +193,29 @@ export function getJointRule(currentA:number){return jointRules.find((rule)=>rul
 
 const currentBySuffix: Record<string, number> = {"":400,"01":630,"02":800,"03":1000,"04":1250,"05":1600,"06":2000,"07":2500,"08":3200,"09":4000,"10":5000,"11":6300};
 const currentByArticleToken: Record<string, number> = {"02":250,"03":315,"04":400,"05":500,"06":630,"08":800,"10":1000,"12":1250,"16":1600,"20":2000,"25":2500,"32":3200,"40":4000,"50":5000,"63":6300};
+
+type Ip68JointSeed = { currentA:number; suffix:string; bushingQty:number; insulatorDesignation:string; insulatorQty:number };
+const ip68JointSeeds: Ip68JointSeed[] = [
+  {currentA:630,suffix:"",bushingQty:1,insulatorDesignation:"06A.G.01",insulatorQty:7},
+  {currentA:800,suffix:"-01",bushingQty:1,insulatorDesignation:"06A.G.01",insulatorQty:6},
+  {currentA:1000,suffix:"-02",bushingQty:1,insulatorDesignation:"10A.G.01",insulatorQty:6},
+  {currentA:1250,suffix:"-03",bushingQty:2,insulatorDesignation:"12A.G.01",insulatorQty:6},
+  {currentA:1600,suffix:"-04",bushingQty:2,insulatorDesignation:"16A.G.01",insulatorQty:6},
+  {currentA:2000,suffix:"-05",bushingQty:3,insulatorDesignation:"1S.20A.G.01",insulatorQty:6},
+  {currentA:2500,suffix:"-06",bushingQty:4,insulatorDesignation:"25A.G.01",insulatorQty:6},
+  {currentA:3200,suffix:"-07",bushingQty:4,insulatorDesignation:"1S.32A.G.01",insulatorQty:6},
+  {currentA:4000,suffix:"-08",bushingQty:6,insulatorDesignation:"V.40Al.G.01.05",insulatorQty:6},
+  {currentA:5000,suffix:"-09",bushingQty:8,insulatorDesignation:"781.006",insulatorQty:6},
+];
+const ip68CurrentBySuffix: Record<string, number> = Object.fromEntries(ip68JointSeeds.map((seed)=>[seed.suffix.replace(/^-/,""),seed.currentA]));
+const getIp68JointSeed=(currentA:number)=>ip68JointSeeds.find((seed)=>seed.currentA===currentA);
 const normalize=(v:unknown)=>String(v??"").replace(/\u00a0/g," ").replace(/[–—]/g,"-").replace(/\s+/g," ").trim();
 
 export function isJointSpecificationRow(row:{article?:string;item?:string}) {
   const article=normalize(row.article);
   const item=normalize(row.item);
   const text=`${article} ${item}`;
-  return /(?:G\.(?:001|005)\.000|012\.(?:001|003)\.000|стык(?:овочн\w*)?|соединитель\s*G)/i.test(text)
+  return /(?:G\.(?:001|005)\.000|012\.(?:001|003|007)\.000|стык(?:овочн\w*)?|соединитель\s*G)/i.test(text)
     || /(?:^|-)G(?:-|$)/i.test(article.replace(/\s+/g,""));
 }
 
@@ -207,7 +224,12 @@ export function parseJointSpecificationRow(row:{rowNumber?:string;article?:strin
   // A joint is classified before every section-family matcher. It can never
   // fall through to FE/CD/CP/ZD/ZDP or any other section calculation.
   if (!isJointSpecificationRow({article,item})) return undefined;
+  const ip:"IP55"|"IP68"=/(?:012\.007\.000|IP68)/i.test(text)?"IP68":"IP55";
   let currentA=Number(text.match(/(400|500|630|800|1000|1250|1600|2000|2500|3200|4000|5000|6300)\s*А/i)?.[1]??0);
+  if (!currentA && ip==="IP68") {
+    const designation=article.match(/012\.007\.000(?:-(\d{2}))?/i);
+    if (designation) currentA=ip68CurrentBySuffix[designation[1]??""]??0;
+  }
   if (!currentA) {
     const designation=article.match(/(?:G\.(?:001|005)\.000|012\.(?:001|003)\.000)(?:-(\d{2}))?/i);
     if (designation) currentA=currentBySuffix[designation[1]??""]??0;
@@ -219,11 +241,31 @@ export function parseJointSpecificationRow(row:{rowNumber?:string;article?:strin
   const thicknessMatch=text.match(/(?:шина\s*)?(6|7)\s*мм/i);
   const busbarThicknessMm=(thicknessMatch?Number(thicknessMatch[1]):null) as 6|7|null;
   const articleTokens=article.toUpperCase().replace(/Р/g,"P").split("-");
-  const poles:4|5=/(?:G\.005\.000|012\.003\.000|5P)/i.test(text)||articleTokens[5]==="5"?5:4;
-  return {id:`joint-${source}-${row.rowNumber??""}-${article}-${item}`,rowNumber:String(row.rowNumber??""),article,item,quantity:Math.max(0,Number(row.quantity)||0),currentA,poles,busbarThicknessMm,source,dimensionsMm:[0,0,0],recognitionStatus:currentA&&getJointRule(currentA)?"confirmed":"missing-current"};
+  const poles:4|5=ip==="IP68"||/(?:G\.005\.000|012\.003\.000|5P)/i.test(text)||articleTokens[5]==="5"?5:4;
+  const supported=ip==="IP68"?Boolean(getIp68JointSeed(currentA)):Boolean(getJointRule(currentA));
+  return {id:`joint-${source}-${row.rowNumber??""}-${article}-${item}`,rowNumber:String(row.rowNumber??""),article,item,quantity:Math.max(0,Number(row.quantity)||0),currentA,poles,ip,busbarThicknessMm,source,dimensionsMm:[0,0,0],recognitionStatus:currentA&&supported?"confirmed":"missing-current"};
 }
 
 export function calculateJointMaterialLines(demand:JointDemandRow):JointMaterialLine[] {
+  if(demand.ip==="IP68") {
+    const seed=getIp68JointSeed(demand.currentA);
+    if(!seed||!(demand.quantity>0)||demand.poles!==5) return [];
+    const q=demand.quantity;
+    const designation=`012.007.000${seed.suffix}`;
+    const basis=`КД ${designation}; ${q} компл.`;
+    const suffix=seed.suffix;
+    const line=(designationValue:string,name:string,qty:number):JointMaterialLine=>({code:"",designation:designationValue,name,unit:"шт",qty,group:"Стыковочные элементы · IP68 · 5P",basis,confidence:"Подтверждено"});
+    return [
+      line(`583.002${suffix}`,`Шина стыка G ${demand.currentA}А IP68`,12*q),
+      line(seed.insulatorDesignation,"Изолятор IP68",seed.insulatorQty*q),
+      line(`195.003${suffix}`,`Прижимной профиль стыка G ${demand.currentA}А IP68`,q),
+      line(`195.004${suffix}`,`Прижимной профиль стыка G ${demand.currentA}А IP68`,q),
+      line("03.212.001-05","Втулка",seed.bushingQty*q),
+      line("","Болт DIN 933-M12×150-8.8",seed.bushingQty*q),
+      line("","Гайка DIN 985-M12-8.8",seed.bushingQty*q),
+      line("","Пружина тарельчатая 60,0×13,0×5,0×1,5",seed.bushingQty*2*q),
+    ];
+  }
   const rule=getJointRule(demand.currentA); if(!rule||!(demand.quantity>0)) return [];
   const q=demand.quantity;
   const poles=demand.poles===5?5:4;
